@@ -1,0 +1,329 @@
+{
+  "task": "Genera un documento professionale intitolato \"Analisi UI/UX - Buongiorno Praga\" in formato A4 verticale.",
+  "language": "it-IT",
+  "output_format": {
+    "target": "documento impaginato A4 verticale",
+    "style": "sintetico, completo, consulenziale, adatto a consegna cliente",
+    "length": "circa 8-12 pagine A4, esclusi eventuali screenshot a pagina intera",
+    "density": "non troppo pieno: usa sezioni brevi, tabelle mirate, callout e spazio bianco",
+    "export_preference": "struttura pronta per essere trasformata in PDF o DOCX"
+  },
+  "audience": {
+    "client": "Buongiorno Praga / Domenico Masini",
+    "producer": "Diego Simoncini",
+    "purpose": "spiegare e giustificare le scelte UI/UX della demo e della Fase 1, mostrando valore strategico, chiarezza progettuale e coerenza con il posizionamento commerciale"
+  },
+  "business_context": {
+    "brand_positioning": "Buongiorno Praga si posiziona come lo scudo protettivo del turista italiano a Praga: non vende solo tour guidati, ma serenita, assistenza, riduzione dello stress e protezione da truffe/logistica complessa.",
+    "market_problem": [
+      "I free tour di massa generano caos logistico, gruppi troppo grandi e bassa cura individuale.",
+      "Le boutique tradizionali hanno qualita umana ma spesso booking obsoleto e poca automazione.",
+      "Le OTA globali sono efficienti ma impersonali, con poca continuita di assistenza locale."
+    ],
+    "target_users": [
+      "Famiglie italiane che cercano sicurezza, chiarezza e ritmi gestibili.",
+      "Coppie e viaggiatori digital-first che prenotano da smartphone.",
+      "Scuole, gruppi e agenzie che richiedono preventivi, organizzazione e affidabilita.",
+      "Viaggiatori gia a Praga che hanno bisogno di orientamento rapido e supporto WhatsApp."
+    ],
+    "core_promise": "Goditi Praga con gli occhi, non con lo schermo del telefono. Al resto pensiamo noi."
+  },
+  "source_material_summary": {
+    "FASE-1.md": {
+      "scope": "Sito base indipendente con flusso pubblico, flusso operativo/admin e flusso cliente.",
+      "implemented_pages": [
+        "/",
+        "/tour",
+        "/tour/[slug]",
+        "/tour-privati",
+        "/partner-europa",
+        "/faq",
+        "/privacy",
+        "/termini"
+      ],
+      "implemented_flows": [
+        "Homepage, catalogo tour, scheda tour, booking e conferma.",
+        "Admin dashboard, gestione tour/orari, calendario, prenotazioni.",
+        "Email di conferma, calendario .ics e link self-service sicuro.",
+        "Booking con tour, slot, adulti, bambini, infanti, disponibilita base, pagamento contanti o Stripe, PNR e totale in euro.",
+        "Widget WhatsApp persistente e messaggi contestuali.",
+        "Modulo Partner Europa per richieste B2B."
+      ],
+      "phase_boundary": "Master Inventory completo, affiliati, OTA parsing, reminder WhatsApp automatici e ERP avanzato sono prevalentemente Fase 2; in Fase 1 sono state predisposte basi utili come pre-tour e self-service tokenizzato."
+    },
+    "DESIGN.md": {
+      "design_direction": "Marketplace turistico caldo e affidabile, ispirato alla chiarezza di Airbnb ma con identita proprietaria Buongiorno Praga.",
+      "visual_principles": [
+        "Mobile-first perche il traffico turistico e prevalentemente da smartphone.",
+        "Photography-led: immagini reali di Praga, tour, guide e punti di incontro.",
+        "Vltava Blue brillante per fiducia, riconoscibilita e una presenza visiva piu viva.",
+        "Prague Orange solo per conversione e azioni ad alto intento.",
+        "Navbar bianca e Sky Canvas azzurrato per una base luminosa e leggibile anche in mobilita.",
+        "Inter come font moderno, leggibile e implementabile senza licenze custom.",
+        "Card 12px e button 8px per equilibrio tra familiarita consumer e serieta operativa.",
+        "Navigazione 80px desktop, layout responsive, CTA e WhatsApp sempre raggiungibili."
+      ],
+      "key_tokens": {
+        "vltava_blue": "#1268D6",
+        "vltava_blue_deep": "#0A56B2",
+        "prague_orange": "#FF8A00",
+        "orange_active": "#E87500",
+        "canvas": "#F4F9FF",
+        "surface_card": "#FFFFFF",
+        "body": "#48657D",
+        "muted": "#627C91",
+        "whatsapp": "#25D366",
+        "font": "Inter"
+      }
+    },
+    "Documento di Sintesi Strategica": {
+      "strategic_pillars": [
+        "Protezione finanziaria e contenuti anti-truffa.",
+        "Qualita boutique e gruppi a numero chiuso.",
+        "Esperienza visiva totale: meno Google Maps manuale, piu punti di incontro geolocalizzati.",
+        "Automazione del funnel: pre-tour, durante il tour, post-tour e upselling."
+      ],
+      "whatsapp_role": "WhatsApp H24 non e solo supporto clienti, ma una funzionalita di brand e una barriera competitiva.",
+      "business_model": [
+        "Vendita diretta online con Stripe o pagamento in contanti dove previsto.",
+        "Canale B2B per scuole, gruppi, agenzie e partner.",
+        "Infrastruttura proprietaria come base per scalare inventory, affiliazioni, OTA e reportistica."
+      ]
+    }
+  },
+  "document_structure": [
+    {
+      "section": "Copertina",
+      "content": [
+        "Titolo: Analisi UI/UX - Buongiorno Praga",
+        "Sottotitolo: Scelte progettuali per la Fase 1 del sito proprietario",
+        "Data, autore, cliente",
+        "Eventuale screenshot hero/demo come immagine principale"
+      ]
+    },
+    {
+      "section": "Executive Summary",
+      "goal": "Riassumere in massimo una pagina il valore della UI/UX progettata.",
+      "must_include": [
+        "La UI non e solo estetica: traduce il posizionamento di Buongiorno Praga in percorsi chiari, rassicuranti e convertenti.",
+        "La demo copre il primo nucleo funzionale: scoperta, valutazione, prenotazione, conferma e gestione operativa.",
+        "Le scelte visuali e di flusso sono pensate per ridurre ansia, frizione e indecisione nel turista italiano."
+      ]
+    },
+    {
+      "section": "Obiettivi UX della Fase 1",
+      "format": "tabella a 3 colonne: Obiettivo, Scelta UX/UI, Valore per il business",
+      "items": [
+        {
+          "objective": "Ridurre lo stress del viaggiatore",
+          "choice": "Hero rassicurante, contenuti anti-truffa, WhatsApp visibile, punti incontro geolocalizzati",
+          "value": "Aumenta fiducia e probabilita di prenotazione diretta"
+        },
+        {
+          "objective": "Rendere la prenotazione rapida",
+          "choice": "Catalogo tour, scheda dettagliata, booking card, slot, partecipanti e pagamento in un flusso lineare",
+          "value": "Riduce abbandono e dipendenza da scambi manuali"
+        },
+        {
+          "objective": "Comunicare qualita boutique",
+          "choice": "Gruppi ristretti, card ordinate, badge di fiducia, tono locale e protettivo",
+          "value": "Differenzia dai free tour di massa e dalle OTA impersonali"
+        },
+        {
+          "objective": "Preparare la scalabilita operativa",
+          "choice": "Admin, calendario, pre-tour, PNR, .ics e self-service tokenizzato",
+          "value": "Crea le basi per automazioni Fase 2 e riduzione lavoro manuale"
+        }
+      ]
+    },
+    {
+      "section": "Analisi del Posizionamento e Traduzione in Interfaccia",
+      "must_explain": [
+        "Come il concetto di 'scudo protettivo' diventa UI: rassicurazioni visibili, microcopy operativo, WhatsApp, conferme e calendario.",
+        "Come la piattaforma evita l'effetto OTA impersonale: tono italiano, presenza locale, assistenza, percorsi chiari.",
+        "Come la piattaforma supera i limiti delle boutique tradizionali: booking engine, disponibilita, backend e automazioni."
+      ]
+    },
+    {
+      "section": "Design System e Scelte Visive",
+      "format": "sottosezioni brevi con mini-tabella colori",
+      "must_include": [
+        "Vltava Blue #1268D6 / #0A56B2: usato per brand, navigazione, footer, link e sezioni trust; comunica affidabilita con un tono piu vivo.",
+        "Prague Orange #FF8A00 / #E87500: usato solo per CTA e conversione; evita dispersione dell'attenzione.",
+        "Bianco #FFFFFF e Sky Canvas #F4F9FF: navbar e superfici luminose, leggibili e adatte alla consultazione mobile.",
+        "Inter: leggibilita, modernita, implementazione semplice, niente dipendenza da font proprietari.",
+        "Card 12px e button 8px: familiarita consumer senza sembrare una copia Airbnb.",
+        "Icone e badge: aiutano la scansione rapida di fiducia, durata, prezzo, mappa e supporto."
+      ]
+    },
+    {
+      "section": "Architettura Informativa Pubblica",
+      "pages_to_cover": [
+        "Homepage",
+        "Catalogo tour",
+        "Scheda tour",
+        "Tour privati",
+        "Partner Europa",
+        "FAQ",
+        "Privacy e Termini"
+      ],
+      "must_explain": [
+        "Perche la homepage mette subito promessa, CTA, tour e trust signals.",
+        "Perche il catalogo usa card comparabili e mobile-friendly.",
+        "Perche la scheda tour combina racconto, prova di fiducia, dettagli pratici, mappa e booking.",
+        "Perche Partner Europa separa il funnel B2B dal funnel turistico standard.",
+        "Perche FAQ, privacy e termini riducono obiezioni e aumentano affidabilita."
+      ]
+    },
+    {
+      "section": "Flusso di Prenotazione",
+      "must_include": [
+        "Selezione tour, slot, partecipanti per fascia, metodo di pagamento, PNR, conferma.",
+        "Disponibilita base come primo presidio anti-overbooking.",
+        "Pagamento Stripe o contanti come equilibrio tra automazione e flessibilita operativa.",
+        "Conferma email, calendario .ics e link self-service come elementi di riduzione ansia post-acquisto."
+      ],
+      "recommended_visual": "Inserire screenshot del booking form e della pagina conferma/prenotazione."
+    },
+    {
+      "section": "WhatsApp H24 come Funzionalita UX",
+      "must_explain": [
+        "Il widget persistente non e un semplice contatto, ma un elemento di fiducia sempre accessibile.",
+        "I messaggi contestuali riducono il lavoro del supporto perche includono gia la pagina/tour di riferimento.",
+        "La presenza di WhatsApp sostiene il posizionamento 'non sei un turista isolato'."
+      ],
+      "recommended_visual": "Inserire screenshot del widget WhatsApp su mobile o scheda tour."
+    },
+    {
+      "section": "Back-office e UX Operativa",
+      "must_include": [
+        "Dashboard con KPI, prenotazioni, stato pagamenti e disponibilita.",
+        "Gestione tour/orari come base per aggiornare l'offerta.",
+        "Calendario operativo per leggere slot e carichi.",
+        "Modulo pre-tour per preparare reminder e link self-service."
+      ],
+      "must_justify": "Spiegare che l'UX non riguarda solo il cliente finale: una buona esperienza admin riduce errori, tempi manuali e rischio di disallineamenti operativi.",
+      "recommended_visual": "Inserire screenshot dashboard admin, calendario e pre-tour."
+    },
+    {
+      "section": "Mobile-first e Accessibilita Pratica",
+      "must_include": [
+        "Il progetto privilegia smartphone perche il turista consulta il sito prima e durante il viaggio.",
+        "CTA minime 48px, WhatsApp sempre raggiungibile, card leggibili, flussi lineari.",
+        "Contrasti chiari: testo blu scuro su arancione, blu su bianco, bianco sulle superfici blu e body sul canvas chiaro.",
+        "Riduzione del carico cognitivo: poche azioni primarie per schermata, microcopy concreto."
+      ]
+    },
+    {
+      "section": "SEO, GEO e Fiducia Digitale",
+      "must_include": [
+        "Metadata Next per home, listing e dettaglio tour.",
+        "Schema/JSON-LD tour e contenuti orientati a ricerche in italiano.",
+        "Google Maps e coordinate per meeting point.",
+        "Pagine FAQ, privacy e termini come segnali di affidabilita e completezza."
+      ]
+    },
+    {
+      "section": "Perimetro Fase 1 e Evoluzione Fase 2",
+      "format": "tabella: Gia previsto in Fase 1 / Evoluzione naturale in Fase 2",
+      "phase_1": [
+        "Sito pubblico",
+        "Catalogo e dettaglio tour",
+        "Booking base",
+        "Stripe/payment link demo",
+        "Email conferma",
+        "Calendario .ics",
+        "Admin dashboard",
+        "Calendario operativo",
+        "Pre-tour e self-service tokenizzato",
+        "Widget WhatsApp contestuale"
+      ],
+      "phase_2": [
+        "Master Inventory completo",
+        "Reminder WhatsApp automatici via provider",
+        "Affiliati e tracking commissioni",
+        "Parsing OTA",
+        "ERP avanzato con margini, payout guide e report partner",
+        "Upselling post-tour automatizzato"
+      ],
+      "tone": "Presentare la Fase 1 come base solida e intenzionale, non come sistema incompleto."
+    },
+    {
+      "section": "Conclusione",
+      "must_include": [
+        "La demo traduce strategia, brand e operativita in un'esperienza coerente.",
+        "Ogni scelta UI/UX ha una funzione: fiducia, conversione, chiarezza, riduzione del lavoro manuale o preparazione alla scalabilita.",
+        "Il risultato giustifica l'investimento perche non consegna solo schermate, ma una direzione di prodotto pronta a evolvere."
+      ]
+    }
+  ],
+  "screenshot_instructions": {
+    "placeholders": [
+      {
+        "label": "Screenshot 1 - Homepage / Hero",
+        "caption": "La promessa di protezione viene comunicata nel primo viewport con CTA diretta e accesso immediato ai tour."
+      },
+      {
+        "label": "Screenshot 2 - Catalogo tour",
+        "caption": "Le card permettono confronto rapido tra esperienze, prezzo, durata e disponibilita."
+      },
+      {
+        "label": "Screenshot 3 - Scheda tour",
+        "caption": "La pagina unisce racconto, dettagli pratici, mappa, trust signals e prenotazione."
+      },
+      {
+        "label": "Screenshot 4 - Booking",
+        "caption": "Il flusso guidato riduce incertezza e raccoglie i dati essenziali senza sovraccaricare l'utente."
+      },
+      {
+        "label": "Screenshot 5 - Conferma / PNR / .ics",
+        "caption": "Dopo la prenotazione l'utente riceve prove concrete: riepilogo, codice, calendario e assistenza."
+      },
+      {
+        "label": "Screenshot 6 - Admin dashboard",
+        "caption": "Il back-office porta sotto controllo prenotazioni, pagamenti, disponibilita e operativita giornaliera."
+      },
+      {
+        "label": "Screenshot 7 - Pre-tour / Self-service",
+        "caption": "La gestione pre-tour anticipa il modello anti-no-show e prepara l'automazione futura."
+      }
+    ],
+    "layout_rule": "Ogni screenshot deve avere una breve didascalia analitica, non descrittiva: spiegare perche la schermata esiste e quale problema risolve.",
+    "do_not_overdo": "Non inserire piu di 1-2 screenshot consecutivi senza testo di analisi."
+  },
+  "writing_rules": {
+    "tone": [
+      "Professionale ma concreto.",
+      "Evitare linguaggio troppo accademico.",
+      "Evitare promesse tecniche non incluse nella Fase 1.",
+      "Ogni affermazione deve collegare scelta progettuale, bisogno utente e valore business."
+    ],
+    "must_avoid": [
+      "Non dire che il design copia Airbnb: dire che ne riprende la chiarezza marketplace come riferimento di usabilita.",
+      "Non presentare Fase 2 come gia completata.",
+      "Non riempire il documento con liste lunghissime.",
+      "Non usare slogan senza giustificazione.",
+      "Non usare tono da preventivo commerciale."
+    ],
+    "preferred_patterns": [
+      "Questa scelta e stata adottata per...",
+      "Il beneficio UX e...",
+      "Il valore operativo e...",
+      "Il collegamento con la strategia e...",
+      "In Fase 1 questo elemento prepara..."
+    ]
+  },
+  "quality_bar": {
+    "value_target": "Il documento deve sembrare adeguato a una consegna professionale pagata 500 euro: curato, chiaro, sintetico, con decisioni motivate e una lettura immediata del valore.",
+    "final_checklist": [
+      "Il documento sta in 8-12 pagine circa.",
+      "Ogni sezione contiene una motivazione, non solo una descrizione.",
+      "Le scelte colore, tipografia, layout, booking, WhatsApp e admin sono giustificate.",
+      "Il perimetro Fase 1/Fase 2 e chiaro.",
+      "Gli screenshot sono integrati come prove della demo.",
+      "Il cliente capisce che la UI/UX e collegata a conversione, fiducia e gestione operativa."
+    ]
+  },
+  "suggested_opening_text": "Questo documento analizza le principali scelte UI/UX adottate per la demo e la Fase 1 di Buongiorno Praga. L'obiettivo non e descrivere semplicemente le schermate, ma spiegare come l'interfaccia traduca il posizionamento strategico del brand in un'esperienza chiara, rassicurante e orientata alla prenotazione diretta.",
+  "deliverable_request_to_claude": "Genera ora il documento completo seguendo questa struttura. Usa titoli chiari, paragrafi brevi, massimo 2 tabelle principali, callout sintetici e placeholder per gli screenshot indicati. Mantieni un tono professionale, concreto e orientato al valore."
+}
