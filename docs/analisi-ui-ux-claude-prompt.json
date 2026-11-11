@@ -1,5 +1,5 @@
 {
-  "task": "Genera un documento professionale intitolato \"Analisi UI/UX - Buongiorno Praga\" in formato A4 verticale.",
+  "task": "Genera un documento professionale intitolato \"Analisi UI/UX - FreeTourPraga\" in formato A4 verticale.",
   "language": "it-IT",
   "output_format": {
     "target": "documento impaginato A4 verticale",
@@ -9,12 +9,12 @@
     "export_preference": "struttura pronta per essere trasformata in PDF o DOCX"
   },
   "audience": {
-    "client": "Buongiorno Praga / Domenico Masini",
+    "client": "FreeTourPraga / Domenico Masini",
     "producer": "Diego Simoncini",
     "purpose": "spiegare e giustificare le scelte UI/UX della demo e della Fase 1, mostrando valore strategico, chiarezza progettuale e coerenza con il posizionamento commerciale"
   },
   "business_context": {
-    "brand_positioning": "Buongiorno Praga si posiziona come lo scudo protettivo del turista italiano a Praga: non vende solo tour guidati, ma serenita, assistenza, riduzione dello stress e protezione da truffe/logistica complessa.",
+    "brand_positioning": "FreeTourPraga si posiziona come lo scudo protettivo del turista italiano a Praga: non vende solo tour guidati, ma serenita, assistenza, riduzione dello stress e protezione da truffe/logistica complessa.",
     "market_problem": [
       "I free tour di massa generano caos logistico, gruppi troppo grandi e bassa cura individuale.",
       "Le boutique tradizionali hanno qualita umana ma spesso booking obsoleto e poca automazione.",
@@ -52,7 +52,7 @@
       "phase_boundary": "Master Inventory completo, affiliati, OTA parsing, reminder WhatsApp automatici e ERP avanzato sono prevalentemente Fase 2; in Fase 1 sono state predisposte basi utili come pre-tour e self-service tokenizzato."
     },
     "DESIGN.md": {
-      "design_direction": "Marketplace turistico caldo e affidabile, ispirato alla chiarezza di Airbnb ma con identita proprietaria Buongiorno Praga.",
+      "design_direction": "Marketplace turistico caldo e affidabile, ispirato alla chiarezza di Airbnb ma con identita proprietaria FreeTourPraga.",
       "visual_principles": [
         "Mobile-first perche il traffico turistico e prevalentemente da smartphone.",
         "Photography-led: immagini reali di Praga, tour, guide e punti di incontro.",
@@ -95,7 +95,7 @@
     {
       "section": "Copertina",
       "content": [
-        "Titolo: Analisi UI/UX - Buongiorno Praga",
+        "Titolo: Analisi UI/UX - FreeTourPraga",
         "Sottotitolo: Scelte progettuali per la Fase 1 del sito proprietario",
         "Data, autore, cliente",
         "Eventuale screenshot hero/demo come immagine principale"
@@ -105,7 +105,7 @@
       "section": "Executive Summary",
       "goal": "Riassumere in massimo una pagina il valore della UI/UX progettata.",
       "must_include": [
-        "La UI non e solo estetica: traduce il posizionamento di Buongiorno Praga in percorsi chiari, rassicuranti e convertenti.",
+        "La UI non e solo estetica: traduce il posizionamento di FreeTourPraga in percorsi chiari, rassicuranti e convertenti.",
         "La demo copre il primo nucleo funzionale: scoperta, valutazione, prenotazione, conferma e gestione operativa.",
         "Le scelte visuali e di flusso sono pensate per ridurre ansia, frizione e indecisione nel turista italiano."
       ]
@@ -324,6 +324,6 @@
       "Il cliente capisce che la UI/UX e collegata a conversione, fiducia e gestione operativa."
     ]
   },
-  "suggested_opening_text": "Questo documento analizza le principali scelte UI/UX adottate per la demo e la Fase 1 di Buongiorno Praga. L'obiettivo non e descrivere semplicemente le schermate, ma spiegare come l'interfaccia traduca il posizionamento strategico del brand in un'esperienza chiara, rassicurante e orientata alla prenotazione diretta.",
+  "suggested_opening_text": "Questo documento analizza le principali scelte UI/UX adottate per la demo e la Fase 1 di FreeTourPraga. L'obiettivo non e descrivere semplicemente le schermate, ma spiegare come l'interfaccia traduca il posizionamento strategico del brand in un'esperienza chiara, rassicurante e orientata alla prenotazione diretta.",
   "deliverable_request_to_claude": "Genera ora il documento completo seguendo questa struttura. Usa titoli chiari, paragrafi brevi, massimo 2 tabelle principali, callout sintetici e placeholder per gli screenshot indicati. Mantieni un tono professionale, concreto e orientato al valore."
 }

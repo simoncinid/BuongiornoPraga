@@ -25,8 +25,8 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "output" / "pdf"
 TMP_DIR = ROOT / "tmp" / "pdfs" / "uiux-assets"
-PDF_PATH = OUT_DIR / "analisi-ui-ux-buongiorno-praga.pdf"
-PDF_ALIAS_PATH = OUT_DIR / "Analisi_UIUX_Buongiorno_Praga_fine.pdf"
+PDF_PATH = OUT_DIR / "analisi-ui-ux-freetour-praga.pdf"
+PDF_ALIAS_PATH = OUT_DIR / "Analisi_UIUX_FreeTourPraga_fine.pdf"
 
 NAVY = colors.HexColor("#1268D6")
 NAVY_SOFT = colors.HexColor("#0A56B2")
@@ -274,7 +274,7 @@ def footer(canvas, doc):
     canvas.line(doc.leftMargin, 15 * mm, width - doc.rightMargin, 15 * mm)
     canvas.setFont(FONT, 7.5)
     canvas.setFillColor(MUTED)
-    canvas.drawString(doc.leftMargin, 10 * mm, "Analisi UI/UX - Buongiorno Praga")
+    canvas.drawString(doc.leftMargin, 10 * mm, "Analisi UI/UX - FreeTourPraga")
     canvas.drawRightString(width - doc.rightMargin, 10 * mm, str(page))
     canvas.restoreState()
 
@@ -290,7 +290,7 @@ def cover(canvas, doc):
     canvas.rect(0, 0, width, 34 * mm, fill=1, stroke=0)
     canvas.setFillColor(colors.white)
     canvas.setFont(FONT_BOLD, 8)
-    canvas.drawString(22 * mm, 24 * mm, "Cliente: Buongiorno Praga")
+    canvas.drawString(22 * mm, 24 * mm, "Cliente: FreeTourPraga")
     canvas.drawString(22 * mm, 18 * mm, "Documento: Analisi UI/UX - Fase 1")
     canvas.drawRightString(width - 22 * mm, 24 * mm, "Autore: Diego Simoncini")
     canvas.drawRightString(width - 22 * mm, 18 * mm, "Formato: A4 verticale")
@@ -310,7 +310,7 @@ def build_story():
     story += [
         Spacer(1, 92 * mm),
         p("ANALISI UI/UX", "cover_kicker"),
-        p("Buongiorno Praga", "cover_title"),
+        p("FreeTourPraga", "cover_title"),
         p(
             "Scelte progettuali per la Fase 1 del sito proprietario: esperienza pubblica, prenotazione, fiducia, assistenza e base operativa.",
             "cover_subtitle",
@@ -326,7 +326,7 @@ def build_story():
     story += [
         p("Executive Summary", "h1"),
         p(
-            "La demo di Fase 1 non va letta come una semplice sequenza di pagine. E' il primo nucleo di prodotto attraverso cui Buongiorno Praga puo presentarsi come alternativa credibile ai free tour di massa, alle boutique poco digitalizzate e alle OTA globali impersonali.",
+            "La demo di Fase 1 non va letta come una semplice sequenza di pagine. E' il primo nucleo di prodotto attraverso cui FreeTourPraga puo presentarsi come alternativa credibile ai free tour di massa, alle boutique poco digitalizzate e alle OTA globali impersonali.",
         ),
         p(
             "La direzione UI/UX e volutamente sobria: pochi elementi decorativi, percorsi evidenti, call to action riconoscibili, supporto WhatsApp sempre raggiungibile e contenuti che riducono l'incertezza prima dell'acquisto. Il design lavora quindi su tre leve: fiducia, conversione e controllo operativo.",
@@ -362,7 +362,7 @@ def build_story():
     story += [
         p("1. Posizionamento UX", "h1"),
         p(
-            "Il mercato dei tour italiani a Praga presenta tre vulnerabilita ricorrenti: gruppi troppo grandi, prenotazioni ancora gestite in modo artigianale e piattaforme globali efficienti ma fredde. La UI risponde a queste debolezze posizionando Buongiorno Praga come servizio locale, protettivo e organizzato.",
+            "Il mercato dei tour italiani a Praga presenta tre vulnerabilita ricorrenti: gruppi troppo grandi, prenotazioni ancora gestite in modo artigianale e piattaforme globali efficienti ma fredde. La UI risponde a queste debolezze posizionando FreeTourPraga come servizio locale, protettivo e organizzato.",
         ),
         p("Dal concetto di scudo protettivo all'interfaccia", "h2"),
         p(
@@ -424,7 +424,7 @@ def build_story():
     story += [
         p("3. Design System", "h1"),
         p(
-            "Il design system prende come riferimento la chiarezza dei marketplace consumer, ma non replica l'identita di Airbnb. Buongiorno Praga richiede un tono piu protettivo, locale e operativo. La conseguenza e una UI pulita, con gerarchie ferme e accenti usati con disciplina.",
+            "Il design system prende come riferimento la chiarezza dei marketplace consumer, ma non replica l'identita di Airbnb. FreeTourPraga richiede un tono piu protettivo, locale e operativo. La conseguenza e una UI pulita, con gerarchie ferme e accenti usati con disciplina.",
         ),
         table(
             [
@@ -536,7 +536,7 @@ def build_story():
     story += [
         p("6. WhatsApp H24 come Prodotto", "h1"),
         p(
-            "Nel progetto Buongiorno Praga WhatsApp non e un semplice canale di contatto. E' una funzione di brand: rende tangibile la promessa che il turista non sia lasciato solo durante il soggiorno.",
+            "Nel progetto FreeTourPraga WhatsApp non e un semplice canale di contatto. E' una funzione di brand: rende tangibile la promessa che il turista non sia lasciato solo durante il soggiorno.",
         ),
         p(
             "Il widget persistente riduce la distanza percepita tra sito e assistenza. I messaggi contestuali aggiungono un vantaggio operativo: quando l'utente scrive dalla pagina di un tour, il supporto riceve gia il contesto della richiesta e puo rispondere piu velocemente.",
@@ -656,7 +656,7 @@ def main():
         leftMargin=22 * mm,
         topMargin=20 * mm,
         bottomMargin=22 * mm,
-        title="Analisi UI/UX - Buongiorno Praga",
+        title="Analisi UI/UX - FreeTourPraga",
         author="Diego Simoncini",
     )
     doc.build(build_story(), onFirstPage=cover, onLaterPages=footer)

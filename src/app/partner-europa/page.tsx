@@ -1,66 +1,59 @@
-import { Building2, Send, Users } from "lucide-react";
-
-export const metadata = {
+import {publicPage} from "@/lib/platform/public";
+import {ContentBlock} from "@/components/ContentBlock";
+export const dynamic="force-dynamic";
+import { Building2, Users, Handshake } from "lucide-react";
+import { InquiryForm } from "@/components/InquiryForm";
+const baseMetadata = {
   title: "Partner Europa",
-  description: "Richieste per scuole, gruppi, hotel, travel blogger e agenzie partner a Praga.",
-  alternates: {
-    canonical: "/partner-europa"
-  }
+  description: "Tour in italiano per scuole, gruppi, hotel e agenzie a Praga.",
+  alternates: { canonical: "/partner-europa" },
 };
-
-export default function PartnerEuropaPage() {
+export default async function Page() {
+ const page=await publicPage("partner-europa"); if(page)return <><ContentBlock page={page}/><div className="container-page mb-16 max-w-3xl"><InquiryForm partner/></div></>;
   return (
     <section className="section">
-      <div className="container-page grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <div className="container-page grid items-start gap-16 lg:grid-cols-[.9fr_1.1fr]">
         <div>
-          <p className="micro-label mb-2 text-muted">Partner Europa</p>
-          <h1 className="display-xl mb-4">Canale dedicato per scuole, gruppi, hotel e agenzie.</h1>
-          <p className="body-md mb-6">
-            Raccontaci date, numero partecipanti ed esigenze logistiche: ti rispondiamo con una proposta chiara per tour privati, gruppi organizzati e collaborazioni locali.
+          <p className="uppercase-tag mb-4 text-primary">Partner Europa</p>
+          <h1 className="display-xl mb-5">
+            Grandi esperienze.
+            <br />
+            Organizzate insieme.
+          </h1>
+          <p className="body-md mb-10">
+            Scuole in viaggio, gruppi da accompagnare, ospiti da consigliare:
+            siamo il tuo riferimento locale per scoprire Praga in italiano.
           </p>
-          <div className="grid gap-4">
-            <div className="flex gap-3"><Users className="text-primary" /> <span>Preventivi per scuole e grandi gruppi.</span></div>
-            <div className="flex gap-3"><Building2 className="text-primary" /> <span>Hotel e partner con un referente operativo dedicato.</span></div>
-          </div>
+          {[
+            [
+              Users,
+              "Scuole e gruppi",
+              "Itinerari e ritmi adatti a chi viaggia insieme.",
+            ],
+            [
+              Building2,
+              "Hotel e agenzie",
+              "Un contatto dedicato per organizzare le visite dei tuoi ospiti.",
+            ],
+            [
+              Handshake,
+              "Collabora con noi",
+              "Affiliazioni e codici per riconoscere le prenotazioni dei tuoi clienti.",
+            ],
+          ].map(([Icon, title, text]) => (
+            <div key={String(title)} className="mb-7 flex gap-4">
+              <Icon className="shrink-0 text-navy" size={24} />
+              <div>
+                <h2 className="title-md mb-2">{String(title)}</h2>
+                <p className="body-sm">{String(text)}</p>
+              </div>
+            </div>
+          ))}
         </div>
-        <form className="card shadow-card grid gap-4 p-6">
-          <label className="grid gap-2">
-            <span className="caption text-ink">Nome referente</span>
-            <input className="text-input" name="name" />
-          </label>
-          <label className="grid gap-2">
-            <span className="caption text-ink">Email</span>
-            <input className="text-input" name="email" type="email" />
-          </label>
-          <label className="grid gap-2">
-            <span className="caption text-ink">Tipo richiesta</span>
-            <select className="text-input" name="type">
-              <option>Scuola</option>
-              <option>Grande gruppo</option>
-              <option>Hotel partner</option>
-              <option>Agenzia di viaggio</option>
-              <option>Travel blogger</option>
-            </select>
-          </label>
-          <div className="grid gap-4 md:grid-cols-2">
-            <label className="grid gap-2">
-              <span className="caption text-ink">Data indicativa</span>
-              <input className="text-input" name="date" type="date" />
-            </label>
-            <label className="grid gap-2">
-              <span className="caption text-ink">Partecipanti</span>
-              <input className="text-input" name="people" type="number" min="1" />
-            </label>
-          </div>
-          <label className="grid gap-2">
-            <span className="caption text-ink">Esigenze logistiche</span>
-            <textarea className="text-input min-h-32" name="notes" />
-          </label>
-          <button className="button-primary" type="button">
-            <Send size={18} /> Invia richiesta B2B
-          </button>
-        </form>
+        <InquiryForm partner />
       </div>
     </section>
   );
 }
+
+export async function generateMetadata(){const p=await publicPage("partner-europa");return {...baseMetadata,...(p?.seoTitle?{title:p.seoTitle}:{}),...(p?.seoDescription?{description:p.seoDescription}:{})};}

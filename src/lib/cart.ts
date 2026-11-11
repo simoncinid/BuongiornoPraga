@@ -6,12 +6,14 @@ export type CartItem = {
   startsAt: string;
   adults: number;
   children: number;
+  infants?: number;
+  unitInfantCents?: number;
   unitAdultCents: number;
   unitChildCents: number;
   imageUrl?: string;
 };
 
-const CART_KEY = "bp-cart";
+const CART_KEY = "ftp-cart";
 
 function readRaw(): CartItem[] {
   if (typeof window === "undefined") return [];
@@ -27,7 +29,7 @@ function readRaw(): CartItem[] {
 
 function writeRaw(items: CartItem[]) {
   window.localStorage.setItem(CART_KEY, JSON.stringify(items));
-  window.dispatchEvent(new Event("bp-cart-updated"));
+  window.dispatchEvent(new Event("ftp-cart-updated"));
 }
 
 export function getCartItems(): CartItem[] {
@@ -35,7 +37,7 @@ export function getCartItems(): CartItem[] {
 }
 
 export function cartItemTotal(item: CartItem) {
-  return item.adults * item.unitAdultCents + item.children * item.unitChildCents;
+  return item.adults * item.unitAdultCents + item.children * item.unitChildCents + (item.infants||0)*(item.unitInfantCents||0);
 }
 
 export function cartSubtotal(items: CartItem[] = readRaw()) {
@@ -51,6 +53,8 @@ export function addToCart(item: Omit<CartItem, "id">) {
   if (existing) {
     existing.adults = item.adults;
     existing.children = item.children;
+    existing.infants = item.infants;
+    existing.unitInfantCents = item.unitInfantCents;
     existing.startsAt = item.startsAt;
     existing.tourTitle = item.tourTitle;
     existing.unitAdultCents = item.unitAdultCents;

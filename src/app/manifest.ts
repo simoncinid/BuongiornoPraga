@@ -3,13 +3,13 @@ import { site } from "@/lib/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Buongiorno Praga",
-    short_name: "Buongiorno Praga",
+    name: "FreeTourPraga",
+    short_name: "FreeTourPraga",
     description: site.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#F4F9FF",
-    theme_color: "#1268D6",
+    background_color: "#FBFAF7",
+    theme_color: "#071A35",
     lang: "it-IT",
     categories: ["travel", "navigation", "lifestyle"],
     icons: [

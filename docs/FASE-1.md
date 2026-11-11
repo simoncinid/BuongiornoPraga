@@ -1,3 +1,5 @@
+> Documento storico, superato il 6 novembre 2026. Per il sistema attuale leggere [Manuale tecnico](MANUALE-TECNICO.md), [copertura contratto](REQUISITI-CONTRATTO.md) e [ipotesi](IPOTESI-E-ATTIVAZIONE.md).
+
 # Fase 1 - Sito Base Indipendente
 
 Questo documento traduce contratto, sintesi strategica e `DESIGN.md` in una consegna tecnica pronta per sviluppo e deploy.

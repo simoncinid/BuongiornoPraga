@@ -158,3 +158,10 @@ model OutboxEmail {
   error     String?
   createdAt DateTime @default(now())
 }
+
+// Transactional platform aggregate. Versioned document with PostgreSQL row locking.
+model PlatformState {
+  id        String   @id
+  data      Json
+  updatedAt DateTime @updatedAt
+}

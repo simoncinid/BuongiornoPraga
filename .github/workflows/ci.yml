@@ -1,0 +1,40 @@
+name: Platform validation
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: test-only
+          POSTGRES_DB: ftp_test_ci
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://postgres:test-only@localhost:5432/ftp_test_ci
+      SESSION_SECRET: ci-only-session-secret-at-least-32-characters
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run db:migrate
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm test
+        env:
+          PLATFORM_STORAGE: postgres
+          TEST_POSTGRES: "1"
+      - run: npm run test:http
+      - run: npm audit --audit-level=moderate
+      - run: npm run build

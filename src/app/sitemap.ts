@@ -1,15 +1,17 @@
 import type { MetadataRoute } from "next";
-import { tours } from "@/lib/data";
+import { catalog } from "@/lib/platform/public";
+export const dynamic="force-dynamic";
 import { absoluteUrl } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+ const tours=await catalog();
   const now = new Date();
   const routes = [
     "",
     "/tour",
     "/tour-privati",
     "/partner-europa",
-    "/faq",
+    "/contatti",
     "/privacy",
     "/termini",
     "/llms.txt",

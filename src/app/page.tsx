@@ -1,148 +1,190 @@
+import Image from "next/image";
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
-import { ArrowRight, CalendarSearch, MapPin, MessageCircle, ShieldCheck, Star, Users } from "lucide-react";
+import { ArrowRight, MessageCircle, ShieldCheck } from "lucide-react";
 import { TourCard } from "@/components/TourCard";
-import { AIAnswerSection } from "@/components/AIAnswerSection";
 import { JsonLd } from "@/components/JsonLd";
-import { PragueGallery } from "@/components/PragueGallery";
 import { TripAdvisorSection } from "@/components/TripAdvisorSection";
-import { faqs, tours, trustPillars } from "@/lib/data";
-import { breadcrumbJsonLd } from "@/lib/seo";
-import { site, whatsappHref } from "@/lib/site";
-
-export default function HomePage() {
-  const stats: Array<[string, string, LucideIcon]> = [
-    ["4.9/5", "Valutazione media", Star],
-    ["H24", "Assistenza WhatsApp", MessageCircle],
-    ["14 max", "Gruppi ristretti", Users],
-    ["1 click", "Punto geolocalizzato", MapPin]
-  ];
-
+import { catalog, publicPage, publicSiteContent } from "@/lib/platform/public";
+import { contentWhatsapp } from "@/lib/platform/content";
+import { faqJsonLd } from "@/lib/seo";
+export const dynamic = "force-dynamic";
+export default async function HomePage() {
+  const [tours, page, c] = await Promise.all([
+    catalog(),
+    publicPage("homepage"),
+    publicSiteContent(),
+  ]);
+  const h = c.home;
   return (
     <>
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: "Home", url: site.url }
-        ])}
-      />
-      <section className="hero-image">
+      <section className="relative isolate overflow-hidden bg-navy text-white">
+        <Image
+          src={h.heroImage}
+          alt="Praga"
+          fill
+          priority
+          sizes="100vw"
+          className="-z-20 object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#071a35]/95 via-[#071a35]/75 to-[#071a35]/25" />
         <div className="container-page grid min-h-[570px] items-center py-20">
           <div className="max-w-2xl">
-            <p className="uppercase-tag mb-5 text-primary">Tour guidati in italiano a Praga</p>
-            <h1 className="display-xl hero-title mb-5">Vivi Praga<br /><em>senza pensieri.</em></h1>
-            <p className="body-md mb-8 max-w-xl">
-              Niente itinerari improvvisati su Google Maps, gruppi di massa soffocanti o trappole per turisti.
-              Prenotazione rapida, cancellazione flessibile e assistenza WhatsApp H24 sempre in tasca.
+            <p className="uppercase-tag mb-5 text-primary">
+              {page?.subtitle || h.heroEyebrow}
+            </p>
+            <h1 className="display-xl hero-title mb-5 !text-white">
+              {page?.title || h.heroTitle}
+            </h1>
+            <p className="body-md mb-8 max-w-xl !text-white/90">
+              {page?.body || h.heroBody}
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/tour" className="button-primary">
-                Vedi tour disponibili <ArrowRight size={18} />
+              <Link href={h.primaryHref} className="button-primary">
+                {h.primaryLabel}
+                <ArrowRight size={18} />
               </Link>
-              <a className="button-secondary hero-cta" href={whatsappHref("Ciao Buongiorno Praga, mi aiutate a scegliere il tour giusto?")}>
-                <MessageCircle size={18} /> Scrivi su WhatsApp
+              <a
+                className="button-secondary hero-cta"
+                href={contentWhatsapp(
+                  c,
+                  "Ciao, vorrei informazioni sui tour in italiano.",
+                )}
+              >
+                <MessageCircle size={18} />
+                {h.secondaryLabel}
               </a>
             </div>
           </div>
         </div>
       </section>
-
-      <section className="border-b border-hairline-soft bg-surface-card py-8">
-        <div className="container-page grid gap-6 md:grid-cols-4">
-          {stats.map(([value, label, Icon]) => (
-            <div key={label} className="flex items-center justify-center gap-3 text-center">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/50 text-primary">
-                <Icon size={20} />
-              </span>
-              <span>
-                <strong className="block text-[11px] uppercase tracking-[1.5px] text-ink">{value}</strong>
-                <span className="text-xs text-muted">{label}</span>
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="editorial-section experiences-section">
-        <div className="container-page">
-          <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <p className="uppercase-tag mb-3 text-primary">Esperienze selezionate</p>
-              <h2 className="display-lg">Tour più amati</h2>
-              <p className="body-sm mt-2">Esperienze indimenticabili con guide italiane.</p>
-            </div>
-            <Link href="/tour" className="uppercase-tag w-fit text-ink">
-              Vedi tutti i tour <ArrowRight className="inline" size={15} />
-            </Link>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {tours.map((tour) => (
-              <TourCard key={tour.id} tour={tour} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="editorial-section bg-navy text-on-dark">
-        <div className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <p className="uppercase-tag mb-3 text-primary">Perché sceglierci</p>
-            <h2 className="display-lg !text-on-dark">Non sei solo un turista.<br />Sei <em className="text-primary">nostro ospite.</em></h2>
-            <p className="body-md mt-5 max-w-md !text-hairline-soft">Conosciamo Praga, la viviamo ogni giorno e vogliamo farti scoprire la sua anima autentica.</p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {trustPillars.map((pillar) => (
-              <div key={pillar.title} className="border-b border-white/15 py-4 last:border-0">
-                <ShieldCheck className="mb-3 text-primary" size={22} />
-                <h3 className="title-md !text-on-dark">{pillar.title}</h3>
-                <p className="body-sm mt-2 !text-hairline-soft">{pillar.text}</p>
+      {h.stats.length > 0 && (
+        <section className="border-b bg-white py-8">
+          <div className="container-page grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {h.stats.map((s, i) => (
+              <div key={i} className="text-center">
+                <strong className="block text-ink">{s.value}</strong>
+                <span className="text-sm text-muted">{s.label}</span>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <PragueGallery />
-
-      <AIAnswerSection />
-
+        </section>
+      )}
       <section className="editorial-section">
-        <div className="container-page grid gap-8 lg:grid-cols-[1fr_0.8fr]">
-          <div>
-            <p className="micro-label mb-2 text-muted">Partner Europa</p>
-            <h2 className="display-lg mb-4">Scuole, gruppi, hotel e agenzie hanno un canale dedicato.</h2>
-            <p className="body-md mb-6">
-              Il form B2B raccoglie richieste strutturate con data, numero partecipanti, esigenze logistiche e canale commerciale.
-              Le richieste entrano nel flusso operativo per preventivo e approvazione.
-            </p>
-            <Link className="button-primary" href="/partner-europa">
-              Invia richiesta B2B <ArrowRight size={18} />
-            </Link>
-          </div>
-          <div className="card grid gap-4 p-6">
-            <CalendarSearch className="text-primary" size={30} />
-            <h3 className="display-md">Richieste organizzate, risposte rapide</h3>
-            <p className="body-sm">
-              Inserisci date, numero partecipanti ed esigenze logistiche: prepariamo una proposta chiara e coordinata per il tuo gruppo.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <TripAdvisorSection />
-
-      <section className="editorial-section bg-surface-soft">
         <div className="container-page">
-          <h2 className="display-lg mb-8">Domande operative</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="card p-5">
-                <h3 className="title-md mb-2">{faq.q}</h3>
-                <p className="body-sm">{faq.a}</p>
-              </div>
+          <p className="uppercase-tag mb-3 text-primary">{h.toursEyebrow}</p>
+          <h2 className="display-lg mb-3">{h.toursTitle}</h2>
+          <p className="body-md mb-8">{h.toursBody}</p>
+          <div className="grid gap-5 md:grid-cols-3">
+            {tours.map((t) => (
+              <TourCard key={t.id} tour={t} />
             ))}
           </div>
         </div>
       </section>
+      <section className="editorial-section bg-navy text-on-dark">
+        <div className="container-page grid gap-12 lg:grid-cols-[.8fr_1.2fr]">
+          <div>
+            <p className="uppercase-tag mb-3 text-primary">{h.trustEyebrow}</p>
+            <h2 className="display-lg !text-white">{h.trustTitle}</h2>
+            <p className="body-md mt-5 !text-white/85">{h.trustBody}</p>
+          </div>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {h.pillars.map((p, i) => (
+              <article key={i} className="border-b border-white/20 py-4">
+                <ShieldCheck size={24} className="mb-4 text-primary" />
+                <h3 className="title-md !text-white">{p.title}</h3>
+                <p className="body-sm mt-3 !text-white/80">{p.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      {c.gallery.length > 0 && (
+        <section className="editorial-section">
+          <div className="container-page">
+            <p className="uppercase-tag mb-3 text-primary">
+              {h.galleryEyebrow}
+            </p>
+            <h2 className="display-lg mb-3">{h.galleryTitle}</h2>
+            <p className="body-md mb-8">{h.galleryBody}</p>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {c.gallery.map((photo, i) => (
+                <figure className="card overflow-hidden" key={i}>
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={photo.imageUrl}
+                      alt={photo.title}
+                      fill
+                      sizes="(min-width:1024px) 33vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <figcaption className="p-5">
+                    <strong className="title-md">{photo.title}</strong>
+                    <p className="body-sm mt-2">{photo.caption}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      {c.answers.length > 0 && (
+        <section className="editorial-section bg-surface-soft">
+          <div className="container-page">
+            <h2 className="display-lg mb-4">{h.answersTitle}</h2>
+            <p className="body-md mb-8">{h.answersBody}</p>
+            <div className="grid gap-5 md:grid-cols-2">
+              {c.answers.map((a, i) => (
+                <article key={i} className="card p-6">
+                  <h3 className="title-md">{a.question}</h3>
+                  <p className="body-sm mt-3">{a.answer}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      <section className="editorial-section">
+        <div className="container-page max-w-4xl">
+          <p className="uppercase-tag mb-3 text-primary">{h.partnerEyebrow}</p>
+          <h2 className="display-lg mb-4">{h.partnerTitle}</h2>
+          <p className="body-md mb-6">{h.partnerBody}</p>
+          <Link href="/partner-europa" className="button-primary">
+            {h.partnerLabel}
+            <ArrowRight size={18} />
+          </Link>
+        </div>
+      </section>
+      <TripAdvisorSection />
+      {c.faqs.length > 0 && (
+        <section className="editorial-section">
+          <div className="container-page max-w-4xl">
+            <JsonLd data={faqJsonLd(c.faqs)} />
+            <h2 className="display-lg mb-7">{h.faqTitle}</h2>
+            <div className="grid gap-4">
+              {c.faqs.map((f, i) => (
+                <details key={i} className="card p-5">
+                  <summary className="cursor-pointer font-bold text-ink">
+                    {f.q}
+                  </summary>
+                  <p className="body-md mt-4">{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
+}
+export async function generateMetadata() {
+  const [p, c] = await Promise.all([
+    publicPage("homepage"),
+    publicSiteContent(),
+  ]);
+  return {
+    title: p?.seoTitle || `${c.globals.brandName} - Tour guidati in italiano`,
+    description: p?.seoDescription || c.globals.description,
+  };
 }

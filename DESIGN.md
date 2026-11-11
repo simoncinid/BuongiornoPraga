@@ -1,10 +1,10 @@
 ---
 version: alpha
-name: Buongiorno-Praga-design-analysis
+name: FreeTourPraga-design-analysis
 description: >-
   A warm, trustworthy travel marketplace inspired by Airbnb's clarity,
   photography-led structure, compact booking flows, and consumer-grade ease, but
-  rebranded around Buongiorno Praga's own promise: protecting Italian travelers
+  rebranded around FreeTourPraga's own promise: protecting Italian travelers
   in Prague from stress, scams, crowds, and logistical friction. The design keeps
   Airbnb as a usability reference for marketplace cards, booking surfaces, and
   mobile-first conversion, while replacing its red-led identity with a
@@ -344,16 +344,16 @@ components:
 
 ## Overview
 
-Airbnb remains the reference for product clarity: a marketplace that makes browsing, comparing, and booking feel immediate on mobile. Buongiorno Praga should borrow that level of simplicity, not its brand. The interface must feel like a boutique Italian travel service in Prague: local, protective, operationally precise, and easy to trust before money changes hands.
+Airbnb remains the reference for product clarity: a marketplace that makes browsing, comparing, and booking feel immediate on mobile. FreeTourPraga should borrow that level of simplicity, not its brand. The interface must feel like a boutique Italian travel service in Prague: local, protective, operationally precise, and easy to trust before money changes hands.
 
 The base canvas is **Sky Canvas** (`{colors.canvas}` - #F4F9FF), with white cards and a white top navigation. **Vltava Blue** (`{colors.navy}` - #1268D6) carries brand, navigation, links, iconography, footer and trust-heavy sections without the visual weight of the previous near-black navy. **Prague Orange** (`{colors.primary}` - #FF8A00) is the single conversion color. It is intentionally scarce: primary CTAs, booking confirmation, payment actions, selected calendar states where conversion is implied, and critical commercial badges.
 
-Type uses **Inter** or the system stack instead of Airbnb Cereal. The hierarchy is slightly firmer than Airbnb because Buongiorno Praga sells reassurance, not only discovery. Display text is confident but not oversized. The site should still trust photography, tour cards, meeting-point maps, review signals, and booking surfaces to carry the experience.
+Type uses **Inter** or the system stack instead of Airbnb Cereal. The hierarchy is slightly firmer than Airbnb because FreeTourPraga sells reassurance, not only discovery. Display text is confident but not oversized. The site should still trust photography, tour cards, meeting-point maps, review signals, and booking surfaces to carry the experience.
 
 The shape language remains friendly and consumer-grade: 8px buttons, 12px tour cards, pill-shaped search/booking selectors, and circular icon buttons. Corners are slightly less soft than Airbnb to avoid clone behavior and to better match a professional tour operator.
 
 **Key Characteristics:**
-- Airbnb-inspired usability, Buongiorno Praga-owned identity: clear marketplace patterns, but different palette, typography, copy, content hierarchy, and trust signals.
+- Airbnb-inspired usability, FreeTourPraga-owned identity: clear marketplace patterns, but different palette, typography, copy, content hierarchy, and trust signals.
 - Bright blue brand frame: navigation text, footer, institutional sections, booking reassurance, links and admin states use `{colors.navy}`.
 - Prague Orange conversion moments: `{colors.primary}` is reserved for "Prenota Ora", "Conferma", "Paga", "Invia Richiesta B2B", and selected/high-intent states.
 - Mobile-first booking: 85%+ expected mobile usage means tour cards, booking selectors, payment choice, WhatsApp support, and calendar flows must be one-hand usable.
@@ -456,7 +456,7 @@ If Inter is unavailable, use the system stack. Do not substitute with Airbnb Cer
 ### Grid & Container
 
 - **Max content width:** 1200-1280px for public pages.
-- **Homepage:** Airbnb-like card clarity, but content order must support Buongiorno Praga's funnel: hero/search, trust strip, featured tours, anti-stress/anti-truffa pillars, reviews, B2B/partner entry, FAQ.
+- **Homepage:** Airbnb-like card clarity, but content order must support FreeTourPraga's funnel: hero/search, trust strip, featured tours, anti-stress/anti-truffa pillars, reviews, B2B/partner entry, FAQ.
 - **Tour listing:** Responsive card grid with filters for date, category, duration, price, and availability.
 - **Tour detail:** Two-column desktop layout with story/content/media on the left and sticky booking card on the right. On mobile the booking CTA becomes sticky at the bottom.
 - **Admin/back-office:** Dense but quiet operational layout: sidebar/topbar, calendar, booking table, tour editor, payment status, manual booking insertion.

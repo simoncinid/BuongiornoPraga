@@ -1,0 +1,35 @@
+# Web app on Vercel; Render runs asynchronous jobs against its protected endpoint.
+services:
+  - type: worker
+    name: freetourpraga-worker
+    runtime: node
+    plan: 0.5c-512mb
+    buildCommand: npm ci
+    startCommand: npm run worker
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: PLATFORM_URL
+        sync: false
+      - key: CRON_SECRET
+        sync: false
+  - type: cron
+    name: freetourpraga-daily-backup
+    runtime: docker
+    dockerfilePath: ./deploy/Dockerfile.backup
+    schedule: "15 2 * * *"
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: AGE_RECIPIENT
+        sync: false
+      - key: BACKUP_BUCKET
+        sync: false
+      - key: SPACES_ENDPOINT
+        sync: false
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: AWS_DEFAULT_REGION
+        value: us-east-1

@@ -9,9 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#D6AD57",
-        "primary-active": "#B98D35",
-        "primary-disabled": "#ECD59C",
+        primary: {
+          DEFAULT: "rgb(var(--primary) / <alpha-value>)",
+          active: "rgb(var(--primary-active) / <alpha-value>)",
+          disabled: "rgb(var(--primary-disabled) / <alpha-value>)",
+          soft: "var(--primary-soft)",
+          "soft-strong": "var(--primary-soft-strong)",
+          muted: "var(--primary-muted)"
+        },
         navy: "#071A35",
         "navy-soft": "#102747",
         "prague-stone": "#EEE9DF",
@@ -27,13 +32,13 @@ const config: Config = {
         "surface-soft": "#F3F0E9",
         "surface-card": "#FFFFFF",
         "surface-strong": "#EEE9DF",
-        "on-primary": "#071A35",
+        "on-primary": "#000000",
         "on-dark": "#FFFFFF",
         "legal-link": "#102747",
-        "star-rating": "#D6AD57",
+        "star-rating": "rgb(var(--primary) / <alpha-value>)",
         whatsapp: "#25D366",
         success: "#15803D",
-        warning: "#E87500",
+        warning: "rgb(var(--warning) / <alpha-value>)",
         scrim: "#000000"
       },
       borderRadius: {
@@ -44,7 +49,7 @@ const config: Config = {
         xl: "24px"
       },
       boxShadow: {
-        card: "rgba(20, 50, 75, 0.06) 0 1px 2px, rgba(18, 104, 214, 0.1) 0 8px 24px"
+        card: "rgba(11, 29, 55, 0.06) 0 1px 2px, rgba(7, 26, 53, 0.08) 0 8px 24px"
       },
       fontFamily: {
         sans: [

@@ -13,7 +13,7 @@ export const bookings = globalStore.bpBookings ?? [];
 globalStore.bpBookings = bookings;
 
 function createPnr() {
-  return `BP-${Math.random().toString(36).slice(2, 6).toUpperCase()}-${Date.now().toString().slice(-4)}`;
+  return `FTP-${Math.random().toString(36).slice(2, 6).toUpperCase()}-${Date.now().toString().slice(-4)}`;
 }
 
 export function createBooking(input: BookingFormInput): BookingRecord {

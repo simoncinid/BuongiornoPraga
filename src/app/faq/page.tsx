@@ -1,31 +1,39 @@
-import { faqs } from "@/lib/data";
+import { publicSiteContent } from "@/lib/platform/public";
 import { JsonLd } from "@/components/JsonLd";
 import { faqJsonLd } from "@/lib/seo";
-
-export const metadata = {
-  title: "FAQ",
-  description: "Domande frequenti su tour, pagamenti, cancellazioni e assistenza Buongiorno Praga.",
-  alternates: {
-    canonical: "/faq"
-  }
+import { publicPage } from "@/lib/platform/public";
+import { ContentBlock } from "@/components/ContentBlock";
+export const dynamic = "force-dynamic";
+const baseMetadata = {
+  title: "Domande frequenti",
+  alternates: { canonical: "/faq" },
 };
-
-export default function FaqPage() {
+export default async function Page() {
+  const page = await publicPage("faq");
+  const c = await publicSiteContent();
+  const faqs = c.faqs;
+  if (page) return <ContentBlock page={page} />;
   return (
     <section className="section">
-      <JsonLd data={faqJsonLd()} />
       <div className="container-page max-w-3xl">
-        <p className="micro-label mb-2 text-muted">FAQ</p>
-        <h1 className="display-xl mb-8">Domande operative</h1>
-        <div className="grid gap-4">
-          {faqs.map((faq) => (
-            <article key={faq.q} className="card p-6">
-              <h2 className="display-md mb-2">{faq.q}</h2>
-              <p className="body-md">{faq.a}</p>
-            </article>
-          ))}
-        </div>
+        <JsonLd data={faqJsonLd(faqs)} />
+        <h1 className="display-xl mb-8">{c.home.faqTitle}</h1>
+        {faqs.map((f) => (
+          <details key={f.q} className="card mb-4 p-6">
+            <summary className="font-bold cursor-pointer">{f.q}</summary>
+            <p className="mt-4">{f.a}</p>
+          </details>
+        ))}
       </div>
     </section>
   );
+}
+
+export async function generateMetadata() {
+  const p = await publicPage("faq");
+  return {
+    ...baseMetadata,
+    ...(p?.seoTitle ? { title: p.seoTitle } : {}),
+    ...(p?.seoDescription ? { description: p.seoDescription } : {}),
+  };
 }

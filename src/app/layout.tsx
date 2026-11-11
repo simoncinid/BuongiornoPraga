@@ -1,20 +1,23 @@
+import { publicSiteContent } from "@/lib/platform/public";
+import { contentWhatsapp } from "@/lib/platform/content";
+export const dynamic = "force-dynamic";
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import "@fontsource-variable/manrope";
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/fraunces/wght-italic.css";
 import { MessageCircle } from "lucide-react";
 import "./globals.css";
+import { ConsentAndTracking } from "@/components/ConsentAndTracking";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { site, whatsappHref } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
-const sans = Manrope({ subsets: ["latin"], variable: "--font-sans" });
-const display = Cormorant_Garamond({ subsets: ["latin"], variable: "--font-display", weight: ["400", "500", "600"] });
-
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: {
-    default: "Buongiorno Praga - Tour guidati in italiano",
-    template: "%s | Buongiorno Praga"
+    default: "FreeTourPraga - Tour guidati in italiano",
+    template: "%s | FreeTourPraga",
   },
   description: site.description,
   metadataBase: new URL(site.url),
@@ -26,8 +29,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     languages: {
-      "it-IT": "/"
-    }
+      "it-IT": "/",
+    },
   },
   robots: {
     index: true,
@@ -37,11 +40,11 @@ export const metadata: Metadata = {
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
-      "max-video-preview": -1
-    }
+      "max-video-preview": -1,
+    },
   },
   openGraph: {
-    title: "Buongiorno Praga",
+    title: "FreeTourPraga",
     description: site.description,
     url: site.url,
     siteName: site.name,
@@ -52,15 +55,17 @@ export const metadata: Metadata = {
         url: "https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1200&q=80",
         width: 1200,
         height: 630,
-        alt: "Ponte Carlo e centro storico di Praga"
-      }
-    ]
+        alt: "Ponte Carlo e centro storico di Praga",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Buongiorno Praga - Tour guidati in italiano",
+    title: "FreeTourPraga - Tour guidati in italiano",
     description: site.description,
-    images: ["https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1200&q=80"]
+    images: [
+      "https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1200&q=80",
+    ],
   },
   category: "travel",
   other: {
@@ -68,26 +73,63 @@ export const metadata: Metadata = {
     "geo.placename": "Praga",
     "geo.position": `${site.latitude};${site.longitude}`,
     ICBM: `${site.latitude}, ${site.longitude}`,
-    "DC.title": "Buongiorno Praga - Tour guidati in italiano"
-  }
+    "DC.title": "FreeTourPraga - Tour guidati in italiano",
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const c = await publicSiteContent();
   return (
     <html lang="it">
-      <body className={`${sans.variable} ${display.variable}`} suppressHydrationWarning>
+      <body
+        className="font-sans"
+        suppressHydrationWarning
+      >
+        <a className="skip-link" href="#contenuto">
+          Vai al contenuto
+        </a>
         <Header />
-        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
-        <main>{children}</main>
+        <JsonLd
+          data={[organizationJsonLd(c.globals), websiteJsonLd(c.globals)]}
+        />
+        <main id="contenuto">{children}</main>
+        <ConsentAndTracking />
         <Footer />
         <a
           className="floating-whatsapp"
-          href={whatsappHref("Ciao Buongiorno Praga, vorrei un'informazione rapida sui tour in italiano.")}
-          aria-label="Apri WhatsApp Buongiorno Praga"
+          href={contentWhatsapp(
+            c,
+            "Ciao FreeTourPraga, vorrei un'informazione rapida sui tour in italiano.",
+          )}
+          aria-label="Apri WhatsApp FreeTourPraga"
         >
           <MessageCircle size={26} />
         </a>
       </body>
     </html>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { globals: g } = await publicSiteContent();
+  return {
+    ...baseMetadata,
+    title: {
+      default: `${g.brandName} - Tour guidati in italiano`,
+      template: `%s | ${g.brandName}`,
+    },
+    description: g.description,
+    applicationName: g.brandName,
+    publisher: g.brandName,
+    openGraph: {
+      ...baseMetadata.openGraph,
+      siteName: g.brandName,
+      title: g.brandName,
+      description: g.description,
+    },
+  };
 }

@@ -2,12 +2,13 @@ import { Suspense } from "react";
 import { AddedToCartBanner } from "@/components/AddedToCartBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { TourFilters } from "@/components/TourFilters";
-import { tours } from "@/lib/data";
+import { catalog, publicPage } from "@/lib/platform/public";
+export const dynamic="force-dynamic";
 import { absoluteUrl, site } from "@/lib/site";
 
-export const metadata = {
+const baseMetadata = {
   title: "Tour guidati in italiano a Praga",
-  description: "Catalogo tour Buongiorno Praga con disponibilita, gruppi ristretti e assistenza WhatsApp H24.",
+  description: "Catalogo tour FreeTourPraga in italiano, con disponibilità, gruppi ristretti e assistenza tutti i giorni dalle 9 alle 19.",
   keywords: [
     ...site.keywords,
     "catalogo tour Praga",
@@ -27,7 +28,8 @@ export const metadata = {
   }
 };
 
-export default function TourListingPage() {
+export default async function TourListingPage() {
+ const tours=await catalog(); const content=await publicPage("catalogo");
   return (
     <section className="section">
       <JsonLd
@@ -49,9 +51,9 @@ export default function TourListingPage() {
         </Suspense>
         <div className="mb-8">
           <p className="micro-label mb-2 text-muted">Catalogo tour</p>
-          <h1 className="display-xl mb-4">Tour guidati in italiano a Praga</h1>
+          <h1 className="display-xl mb-4">{content?.title||"Tour guidati in italiano a Praga"}</h1>
           <p className="body-md max-w-2xl">
-            Filtra per esperienza, controlla i posti e prenota con conferma email automatica.
+            {content?.body||"Filtra per esperienza, controlla i posti e prenota con conferma email automatica."}
           </p>
         </div>
         <TourFilters tours={tours} />
@@ -59,3 +61,5 @@ export default function TourListingPage() {
     </section>
   );
 }
+
+export async function generateMetadata(){const p=await publicPage("catalogo");return {...baseMetadata,...(p?.seoTitle?{title:p.seoTitle}:{}),...(p?.seoDescription?{description:p.seoDescription}:{})};}

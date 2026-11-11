@@ -16,7 +16,7 @@ export function AddedToCartBanner() {
   if (!visible) return null;
 
   return (
-    <div className="mb-6 flex items-start justify-between gap-4 border border-primary/30 bg-[#fbf3dd] px-5 py-4">
+    <div className="mb-6 flex items-start justify-between gap-4 border border-primary/30 bg-primary-soft px-5 py-4">
       <div className="flex gap-3">
         <CheckCircle2 className="mt-0.5 shrink-0 text-primary" size={22} />
         <div>

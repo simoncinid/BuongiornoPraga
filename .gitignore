@@ -6,3 +6,12 @@ dist
 coverage
 *.log
 prisma/dev.db
+
+.data/
+.env.*.local
+*.tsbuildinfo
+.next-*/
+backups/
+tmp/
+output/screenshots/
+.DS_Store

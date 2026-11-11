@@ -1,6 +1,3 @@
-import { NextResponse } from "next/server";
-import { tours } from "@/lib/data";
-
-export async function GET() {
-  return NextResponse.json({ tours });
-}
+import {NextResponse} from "next/server";
+const gone=()=>NextResponse.json({error:"Endpoint sostituito: usare /api/platform"},{status:410});
+export {gone as GET,gone as POST};

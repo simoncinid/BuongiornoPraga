@@ -1,7 +1,7 @@
+import {pragueInstant} from "./platform/time";
 import type { Tour } from "./types";
 
-const today = new Date();
-today.setHours(0, 0, 0, 0);
+const today = new Date(new Date().toLocaleDateString("sv-SE",{timeZone:"Europe/Prague"})+"T12:00:00Z");
 
 function googleMapUrl(query: string) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
@@ -12,11 +12,10 @@ function googleMapEmbed(latitude: number, longitude: number) {
 }
 
 function slot(id: string, tourId: string, dayOffset: number, hour: number, capacity = 14, reserved = 0) {
-  const starts = new Date(today);
-  starts.setDate(today.getDate() + dayOffset);
-  starts.setHours(hour, 0, 0, 0);
-  const ends = new Date(starts);
-  ends.setHours(starts.getHours() + 2);
+  const day = new Date(today);
+  day.setUTCDate(day.getUTCDate()+dayOffset);
+  const starts = new Date(pragueInstant(`${day.toISOString().slice(0,10)}T${String(hour).padStart(2,'0')}:00`));
+  const ends = new Date(starts.getTime()+2*3600000);
 
   return {
     id,
@@ -57,7 +56,7 @@ export const tours: Tour[] = [
     language: "Italiano",
     seoTitle: "Tour Citta Vecchia e Ponte Carlo in italiano",
     seoDescription:
-      "Tour guidato in italiano tra Citta Vecchia, Orologio Astronomico e Ponte Carlo con gruppo ristretto, consigli anti-truffa e WhatsApp H24.",
+      "Tour guidato in italiano tra Città Vecchia, Orologio Astronomico e Ponte Carlo con gruppo ristretto e informazioni prima della visita.",
     seoKeywords: [
       "tour Citta Vecchia Praga italiano",
       "Ponte Carlo guida italiana",
@@ -73,7 +72,7 @@ export const tours: Tour[] = [
     inclusions: [
       "Guida italiana o italofona locale",
       "Gruppo ristretto a numero chiuso",
-      "Assistenza WhatsApp H24",
+      "Assistenza WhatsApp tutti i giorni, 9:00–19:00",
       "Coordinate native del punto d'incontro"
     ],
     safetyNotes: [
@@ -132,7 +131,7 @@ export const tours: Tour[] = [
     inclusions: [
       "Guida italiana o italofona locale",
       "Link mappa a un tocco",
-      "Assistenza WhatsApp H24",
+      "Assistenza WhatsApp tutti i giorni, 9:00–19:00",
       "Consigli per ristoranti e rientro"
     ],
     safetyNotes: [
@@ -190,7 +189,7 @@ export const tours: Tour[] = [
     inclusions: [
       "Guida italiana o italofona locale",
       "Prenotazione coordinata del percorso",
-      "Assistenza WhatsApp H24",
+      "Assistenza WhatsApp tutti i giorni, 9:00–19:00",
       "Indicazioni per rientrare in hotel"
     ],
     safetyNotes: [
@@ -217,18 +216,18 @@ export const trustPillars = [
   },
   {
     title: "Addio Google Maps",
-    text: "Punti d'incontro geolocalizzati, reminder e indicazioni native da aprire con un tocco."
+    text: "Punti d'incontro geolocalizzati, email di conferma e indicazioni native da aprire con un tocco."
   },
   {
-    title: "WhatsApp H24",
-    text: "Un riferimento operativo prima, durante e dopo il soggiorno a Praga."
+    title: "WhatsApp ogni giorno",
+    text: "Il servizio clienti risponde dalle 9:00 alle 19:00 per informazioni e richieste sui tour."
   }
 ];
 
 export const faqs = [
   {
     q: "Posso pagare in contanti sul posto?",
-    a: "Si. Nel booking puoi scegliere pagamento in contanti oppure link Stripe. La prenotazione resta tracciata e ricevi comunque la conferma email."
+    a: "Sì. Puoi scegliere contanti sul posto oppure carta tramite link sicuro Stripe. Ricevi la conferma email con il riepilogo."
   },
   {
     q: "I gruppi sono davvero a numero chiuso?",
@@ -236,7 +235,7 @@ export const faqs = [
   },
   {
     q: "Come ricevo il punto d'incontro?",
-    a: "La conferma include indirizzo, link Google Maps e contatto WhatsApp. Il modulo Pre-Tour genera anche un link sicuro per modifica o cancellazione."
+    a: "La conferma include indirizzo, link Google Maps e contatto WhatsApp. Per modificare o cancellare usa il link della singola prenotazione ricevuto via email, senza account, oppure contatta lo staff."
   },
   {
     q: "La pagina Partner Europa e per chi?",

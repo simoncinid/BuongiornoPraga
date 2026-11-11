@@ -11,7 +11,7 @@ export function stripeClient() {
 
 export async function createStripePaymentLink(booking: BookingRecord) {
   const stripe = stripeClient();
-  if (!stripe) return booking.stripePaymentUrl;
+  if (!stripe) throw new Error("Stripe non configurato");
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",

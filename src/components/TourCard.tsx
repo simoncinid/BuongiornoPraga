@@ -10,7 +10,7 @@ export function TourCard({ tour }: { tour: Tour }) {
       <Link href={`/tour/${tour.slug}`} className="block">
         <div className="relative aspect-[4/3]">
           <Image src={tour.imageUrl} alt={tour.title} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" />
-          <span className="absolute left-3 top-3 bg-primary px-2 py-1 text-[9px] font-bold uppercase tracking-[1.3px] text-ink">In evidenza</span>
+          <span className="absolute left-3 top-3 bg-primary px-2 py-1 text-[10px] font-bold uppercase tracking-[1.3px] text-on-primary">In italiano</span>
         </div>
       </Link>
       <div className="grid gap-3 p-4">
@@ -18,9 +18,7 @@ export function TourCard({ tour }: { tour: Tour }) {
           <Link href={`/tour/${tour.slug}`} className="title-md">
             {tour.title}
           </Link>
-          <span className="flex shrink-0 items-center gap-1 text-sm font-semibold text-ink">
-            <Star size={15} fill="#D6AD57" color="#D6AD57" /> {tour.rating}
-          </span>
+
         </div>
         <p className="body-sm line-clamp-2">{tour.shortDescription}</p>
         <div className="grid gap-2 text-sm text-muted">

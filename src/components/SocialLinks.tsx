@@ -1,7 +1,10 @@
 import { ExternalLink } from "lucide-react";
-import { socialLinks } from "@/lib/site";
+import { publicSiteContent } from "@/lib/platform/public";
 
-export function SocialLinks({ compact = false }: { compact?: boolean }) {
+export async function SocialLinks({ compact = false }: { compact?: boolean }) {
+  const {
+    globals: { socialLinks },
+  } = await publicSiteContent();
   if (!socialLinks.length) return null;
 
   return (
@@ -12,7 +15,11 @@ export function SocialLinks({ compact = false }: { compact?: boolean }) {
           href={link.url}
           target="_blank"
           rel="me noreferrer"
-          className={compact ? "button-secondary !min-h-10 !px-4" : "flex items-center justify-between rounded-sm border border-hairline-soft px-4 py-3 text-sm text-ink"}
+          className={
+            compact
+              ? "button-secondary !min-h-10 !px-4"
+              : "flex items-center justify-between rounded-sm border border-hairline-soft px-4 py-3 text-sm text-ink"
+          }
         >
           <span>{link.label}</span>
           <ExternalLink size={16} />

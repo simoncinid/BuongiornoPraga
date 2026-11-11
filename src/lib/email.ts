@@ -10,14 +10,14 @@ export function bookingEmailHtml(booking: BookingRecord) {
       : "<p><strong>Pagamento:</strong> contanti sul posto, secondo le condizioni concordate.</p>";
 
   return `
-    <div style="font-family:Inter,Arial,sans-serif;color:#14324B;line-height:1.55">
+    <div style="font-family:Inter,Arial,sans-serif;color:#0B1D37;line-height:1.55">
       <h1>Conferma prenotazione ${booking.pnr}</h1>
       <p>Ciao ${booking.name}, la tua prenotazione per <strong>${booking.tourTitle}</strong> e stata registrata.</p>
       <p><strong>Quando:</strong> ${formatDateTime(booking.startsAt)}<br />
       <strong>Partecipanti:</strong> ${booking.totalGuests}<br />
       <strong>Totale:</strong> ${formatMoney(booking.totalCents)}</p>
       ${paymentBlock}
-      <div style="background:#1268D6;color:#fff;padding:20px;border-radius:12px;margin:24px 0">
+      <div style="background:#071A35;color:#fff;padding:20px;border-radius:12px;margin:24px 0">
         <h2 style="margin-top:0">Il tuo viaggio a Praga e al sicuro.</h2>
         <p>Salva immediatamente questo numero nei tuoi contatti: e la tua linea diretta con il nostro Triage Emergenze, attiva h24.</p>
         <p>Scrivici su WhatsApp per qualsiasi dubbio organizzativo o problema logistico prima, durante e dopo il tuo soggiorno. Non sei piu un turista isolato, sei un ospite protetto.</p>
@@ -45,10 +45,7 @@ export function bookingEmailText(booking: BookingRecord) {
 
 export async function sendBookingConfirmation(booking: BookingRecord) {
   const host = process.env.SMTP_HOST;
-  if (!host) {
-    console.info("SMTP non configurato. Email simulata:", bookingEmailText(booking));
-    return { simulated: true };
-  }
+  if (!host) throw new Error("SMTP non configurato");
 
   const transporter = nodemailer.createTransport({
     host,
@@ -63,7 +60,7 @@ export async function sendBookingConfirmation(booking: BookingRecord) {
   });
 
   await transporter.sendMail({
-    from: process.env.SMTP_FROM || `Buongiorno Praga <${site.email}>`,
+    from: process.env.SMTP_FROM || `FreeTourPraga <${site.email}>`,
     to: booking.email,
     bcc: process.env.ADMIN_EMAIL,
     subject: `Conferma prenotazione ${booking.pnr} - ${booking.tourTitle}`,

@@ -35,6 +35,8 @@ export type Tour = {
   basePriceCents: number;
   childPriceCents: number;
   infantPriceCents: number;
+  adultMinAge?: number;
+  childMinAge?: number;
   maxGuests: number;
   walkingDifficulty: number;
   rating: number;

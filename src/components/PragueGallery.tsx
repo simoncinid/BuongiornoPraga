@@ -54,7 +54,7 @@ export function PragueGallery() {
                 alt={item.title}
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                loading="eager"
+                loading="lazy"
                 className="object-cover transition duration-300 group-hover:scale-[1.03]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#071a35]/95 via-[#143b77]/48 to-transparent" />

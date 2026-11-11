@@ -1,3 +1,5 @@
+> Documento storico, superato il 6 novembre 2026. Per il sistema attuale leggere [Manuale tecnico](MANUALE-TECNICO.md), [copertura contratto](REQUISITI-CONTRATTO.md) e [ipotesi](IPOTESI-E-ATTIVAZIONE.md).
+
 # Architettura tecnica
 
 ## Stack

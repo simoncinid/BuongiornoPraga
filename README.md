@@ -1,30 +1,50 @@
-# Buongiorno Praga - Fase 1
+# FreeTourPraga — piattaforma tour
 
-Piattaforma Next.js per vendita e gestione tour guidati a Praga.
+> **Stato di consegna: non ancora completo e collaudato rispetto al contratto ufficiale.** Leggere [il rapporto tecnico aggiornato](docs/STATO-CONSEGNA.md), che distingue sviluppo, test locali e attività mancanti.
 
-## Avvio locale
+Implementazione locale delle due fasi di `freetour-praga-contratto.pdf`: sito responsive, booking multi-tour, gestionale, inventario condiviso, checkout senza account, Stripe, email/ICS, affiliati/QR, import OTA, reminder WhatsApp e KPI.
 
 ```bash
-npm install
-cp .env.example .env
+npm ci
+npm run setup:local
 npm run dev
 ```
 
-Apri `http://localhost:3000`.
+- **Sito:** http://localhost:3100
+- **Gestionale:** http://localhost:3100/accesso
+- **Accesso solo locale:** `admin@freetourpraga.local` / `PragaLocale!2026`
 
-## Fase 1 inclusa
+L'anteprima conserva realmente i dati su file locale. In produzione usa PostgreSQL con transazioni. Nessun pagamento o invio esterno viene dichiarato riuscito senza il provider configurato.
 
-- Frontend pubblico responsive con SEO, tour, trust strip, FAQ, Partner Europa, contatti e WhatsApp persistente.
-- Booking engine con fasce eta, disponibilita, scelta contanti o Stripe payment link.
-- Back-office per tour, slot, prenotazioni, calendario operativo e stato pagamenti.
-- Email transazionali con contenuto operativo WhatsApp H24.
-- Feed calendario `.ics` per lo staff.
-- Documentazione tecnica, schema database PostgreSQL/Prisma e variabili ambiente.
-- Modulo Pre-Tour con token self-service e reminder preparato come estensione operativa.
+## Documentazione
 
-## Produzione
+- [Copertura di ogni requisito contrattuale](docs/REQUISITI-CONTRATTO.md)
+- [Ipotesi adottate e attivazione](docs/IPOTESI-E-ATTIVAZIONE.md)
+- [Manuale tecnico, operativo e deploy](docs/MANUALE-TECNICO.md)
+- [Piano Google Ads](docs/GOOGLE-ADS.md)
+- [Risultati e limiti del collaudo](docs/COLLAUDO.md)
 
-1. Configura `DATABASE_URL`, SMTP, Stripe e numero WhatsApp.
-2. Esegui `npm run db:generate` e `npm run db:push`.
-3. Pubblica su Vercel collegando le variabili ambiente.
-4. Imposta il webhook Stripe su `/api/stripe/webhook`.
+## Verifica
+
+```bash
+npm run typecheck
+npm test
+node scripts/test-postgres.mjs
+npm audit --audit-level=moderate
+npm run build
+npm run test:http
+```
+
+Stack: Next.js/React/TypeScript/Tailwind, PostgreSQL/Prisma, Stripe, SMTP, Twilio e IMAP. Deploy predisposto per **GitHub + Vercel + Render + DigitalOcean** con CI, migrazione, worker, immagini Spaces e backup cifrato giornaliero.
+
+**Stato esterno:** non pubblicato; account, dominio, database e credenziali non sono stati provisionati. Servono accessi e collaudi reali per attivare pagamenti, messaggi, import OTA, backup e campagne. Le precedenti note “solo frontend Fase 1” sono storiche e sono superate dalla documentazione sopra.
+
+## Precisazione: sito pubblico e carrello browser
+
+Non esistono area cliente, registrazione o login per i viaggiatori. Il carrello è salvato in `localStorage` nel browser/dispositivo utilizzato. Il riepilogo dopo il checkout è disponibile nella stessa scheda tramite una ricevuta temporanea (`sessionStorage`), senza account. L’email contiene un link protetto limitato alla singola prenotazione per cambio partenza, cancellazione e consenso reminder. L’accesso con password riguarda solo il gestionale.
+
+- **Sconto e cancellazione:** `/admin/impostazioni`, percentuale/soglia tour e ore/rimborso.
+- **Fasce d’età e tariffe:** `/admin/tour`, per ciascun tour.
+- Le impostazioni sono persistite e usate dal motore server; i valori iniziali non sono vincoli fissi.
+
+Il CMS globale è in `/admin/sito`: home, FAQ, galleria, contatti, social e footer. `npm run test:http:production` collauda il bundle standalone su PostgreSQL temporaneo; `npm run preflight` verifica la configurazione dei servizi, senza provarne il funzionamento reale.

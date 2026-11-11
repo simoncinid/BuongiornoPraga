@@ -22,7 +22,7 @@ export async function bookingIcs(pnr: string) {
   return new Promise<string>((resolve, reject) => {
     createEvent(
       {
-        uid: `${booking.pnr}@buongiornopraga.com`,
+        uid: `${booking.pnr}@freetourpraga.com`,
         start: dateArray(slotMatch.slot.startsAt),
         end: dateArray(slotMatch.slot.endsAt),
         startInputType: "utc",
@@ -32,7 +32,7 @@ export async function bookingIcs(pnr: string) {
         location: slotMatch.tour.meetingAddress,
         url: booking.selfServiceUrl,
         status: booking.status === "cancelled" ? "CANCELLED" : "CONFIRMED",
-        organizer: { name: "Buongiorno Praga", email: "prenotazioni@buongiornopraga.com" }
+        organizer: { name: "FreeTourPraga", email: "prenotazioni@freetourpraga.com" }
       },
       (error, value) => {
         if (error) reject(error);

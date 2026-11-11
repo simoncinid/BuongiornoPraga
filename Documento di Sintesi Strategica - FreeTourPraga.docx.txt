@@ -1,17 +1,17 @@
 ﻿DOCUMENTO DI SINTESI STRATEGICA INTEGRATA: BRAND IDENTITY, STRATEGIA DI MERCATO E REQUISITI SOFTWARE
-Progetto Proprietario: Buongiorno Praga
+Progetto Proprietario: FreeTourPraga
 Autore e Proprietario: Domenico Masini
 Destinatario Tecnico: Diego Simoncini (Webbitz)
 Linee Guida di Riferimento: Unificazione dei Volumi Strategico-Accademici I, II, III, IV e dei Capitolati di Sviluppo.
 1. VISIONE AZIENDALE E POSIZIONAMENTO DI MERCATO (OCEANO BLU)
-Il mercato dei servizi turistici per viaggiatori italiani nella città di Praga è storicamente saturo, ma caratterizzato da profonde inefficienze strutturali sia sul piano dell'esperienza utente (User Experience) sia su quello tecnologico. Il posizionamento strategico di Buongiorno Praga ridefinisce le regole del settore attraverso un approccio "Oceano Blu", uscendo dalla guerra dei prezzi e focalizzandosi sull'eliminazione totale dello stress del viaggiatore.
+Il mercato dei servizi turistici per viaggiatori italiani nella città di Praga è storicamente saturo, ma caratterizzato da profonde inefficienze strutturali sia sul piano dell'esperienza utente (User Experience) sia su quello tecnologico. Il posizionamento strategico di FreeTourPraga ridefinisce le regole del settore attraverso un approccio "Oceano Blu", uscendo dalla guerra dei prezzi e focalizzandosi sull'eliminazione totale dello stress del viaggiatore.
 1.1 Mappatura dei Competitor e Vulnerabilità del Mercato
 I concorrenti operanti a Praga si dividono in tre macro-categorie, ciascuna affetta da debolezze operative che la nostra piattaforma andrà a monetizzare:
 * I Volumisti di Massa (es. Freetouritalianopraga, Azzurri Praga): Modello basato sul "Free Tour" come esca commerciale. Riempiono i gruppi oltre le 50 persone per singola guida, distruggendo la qualità dell'esperienza e focalizzandosi esclusivamente sulla vendita aggressiva di tour aggiuntivi in piazza. Vulnerabilità: Caos logistico, frustrazione del cliente, totale assenza di customer care individualizzato.
 * Le Boutique Tradizionali (es. L'Ombrello Italiano, Conoscere Praga): Realtà artigianali con un'ottima qualità del racconto umano, guidate da professionisti appassionati. Vulnerabilità: Forte frizione tecnologica. Mancano di un booking engine in tempo reale, gestiscono le prenotazioni via email o moduli obsoleti e non possiedono automazioni di marketing.
 * Le Grandi OTA Globali (es. GetYourGuide, Civitatis): Piattaforme aggregate con cataloghi sterminati. Vulnerabilità: Totale de-personalizzazione. Il cliente è un numero d'ordine, le guide cambiano continuamente e non esiste un punto di riferimento umano sul territorio in caso di imprevisti.
 1.2 La Proposta Unica di Valore (UVP)
-Buongiorno Praga si posiziona come lo "Scudo Protettivo" del turista italiano a Praga. La proposta di valore (Unique Value Proposition) non vende semplicemente ore di camminata guidata, ma la totale serenità psicologica del viaggiatore, sintetizzata nel messaggio chiave della Hero Section del sito web:
+FreeTourPraga si posiziona come lo "Scudo Protettivo" del turista italiano a Praga. La proposta di valore (Unique Value Proposition) non vende semplicemente ore di camminata guidata, ma la totale serenità psicologica del viaggiatore, sintetizzata nel messaggio chiave della Hero Section del sito web:
 "Goditi Praga con gli occhi, non con lo schermo del telefono. Al resto pensiamo noi."
 Il sottotitolo ad alta conversione stabilisce immediatamente il divario con i concorrenti: Niente itinerari improvvisati su Google Maps, gruppi di massa soffocanti o trappole per turisti. Scopri la città autentica raccontata in italiano dalle nostre guide locali. Prenotazione istantanea in un click, cancellazione flessibile e la sicurezza della nostra assistenza WhatsApp H24 sempre in tasca.
 2. BRAND IDENTITY E IDENTITÀ VISIVA (SPECIFICHE PER IL CODICE TAILWIND CSS)
@@ -36,11 +36,11 @@ Elemento Cromatico
 	3. IL PILASTRO OPERATIVO CORE: L'ASSISTENZA H24 SU WHATSAPP
 L'assistenza h24 non è considerata un semplice reparto di "Customer Service" post-vendita, ma una vera e propria funzionalità del Brand e una barriera competitiva contro i concorrenti. Essa concretizza il concetto di "Scudo" per il turista. Dal punto di vista del software e dell'infrastruttura di Diego, l'assistenza h24 deve essere integrata tramite due flussi tecnici obbligatori:
 3.1 Il Widget Persistente sul Frontend
-Su tutte le pagine del sito web, specialmente nella visualizzazione mobile (che rappresenta l'85% del traffico dei viaggiatori in loco), deve essere presente un pulsante fluttuante di WhatsApp posizionato in basso a destra. Al click sul widget, il sistema non deve limitarsi ad aprire l'applicazione, ma deve compilare automaticamente un testo dinamico personalizzato in base alla pagina in cui si trova l'utente (es. "Ciao Buongiorno Praga, mi trovo nella pagina del Tour del Castello e vorrei un'informazione rapida sulla disponibilità...").
+Su tutte le pagine del sito web, specialmente nella visualizzazione mobile (che rappresenta l'85% del traffico dei viaggiatori in loco), deve essere presente un pulsante fluttuante di WhatsApp posizionato in basso a destra. Al click sul widget, il sistema non deve limitarsi ad aprire l'applicazione, ma deve compilare automaticamente un testo dinamico personalizzato in base alla pagina in cui si trova l'utente (es. "Ciao FreeTourPraga, mi trovo nella pagina del Tour del Castello e vorrei un'informazione rapida sulla disponibilità...").
 3.2 Automazione Post-Acquisto e Messaggistica Transazionale
 Nel momento in cui il database PostgreSQL registra il successo di un pagamento tramite il webhook di Stripe, il sistema invia immediatamente un voucher/email transazionale. All'interno di questa comunicazione deve spiccare una sezione preformattata con il seguente testo operativo ad alto impatto emotivo:
 "Il tuo viaggio a Praga è al sicuro. Salva immediatamente questo numero nei tuoi contatti: è la tua linea diretta con il nostro Triage Emergenze, attiva h24. Scrivici su WhatsApp per qualsiasi dubbio organizzativo o problema logistico prima, durante e dopo il tuo soggiorno (voli, hotel, indicazioni o consigli sui ristoranti). Non sei più un turista isolato, sei un ospite protetto."
-4. I QUATTRO PILASTRI "ANTI-BUFALA" E PUNTI DI FORZA DI BUONGIORNO PRAGA
+4. I QUATTRO PILASTRI "ANTI-BUFALA" E PUNTI DI FORZA DI FREETOURPRAGA
 La differenziazione commerciale della piattaforma si poggia su quattro punti di forza fondamentali, che risolvono i problemi storici dei viaggiatori italiani in Repubblica Ceca:
 1. Protezione Finanziaria (Scudo Anti-Truffe): Il software e i contenuti mettono in guardia il cliente contro i famigerati uffici di cambio del centro storico (noti per commissioni nascoste fino al 40%) e contro i bancomat Euronet. La piattaforma consiglia i punti di prelievo bancari sicuri ed esegue tutte le transazioni online in euro senza commissioni di cambio nascoste.
 2. Qualità Boutique e Numero Chiuso (Anti-Affollamento): A differenza dei volumisti di massa, la piattaforma blocca automaticamente le vendite per ogni fascia oraria una volta raggiunto il tetto massimo di partecipanti impostato nel backend (Master Inventory). Diego deve implementare una logica di blocco realtime per impedire l'overbooking e garantire gruppi ristretti.
@@ -54,7 +54,7 @@ La differenziazione commerciale della piattaforma si poggia su quattro punti di 
 Per permettere a Domenico una gestione manageriale scientifica dell'agenzia, il backend deve comprendere un pannello di controllo finanziario (ERP) avanzato in grado di aggregare i dati transazionali ed eliminare i calcoli manuali su fogli Excel esterni. Le specifiche di calcolo che Diego deve implementare sono:
 * Calcolo automatico del Margine Netto: Il sistema deve estrarre il fatturato lordo generato in un intervallo temporale selezionabile dal pannello e sottrarre automaticamente le commissioni transazionali di Stripe, le commissioni spettanti ai partner affiliati (es. Hotel, Travel Blogger) e i compensi delle guide (configurati a tariffa fissa per tour o a percentuale nel database).
 * Analisi Singola Performance: Domenico deve poter filtrare i dati per vedere in tempo reale quanto fatturato ha generato ogni singola guida, quanto le spetta come payout, e quanto fatturato ha convertito ogni specifico partner commerciale inserito nella rete di affiliazione.
-6. ARCHITETTURA DEL BUSINESS MODEL CANVAS DI BUONGIORNO PRAGA
+6. ARCHITETTURA DEL BUSINESS MODEL CANVAS DI FREETOURPRAGA
 A completamento della strategia aziendale, lo schema operativo che unifica l'intera infrastruttura di business si articola secondo la struttura del Business Model Canvas, ottimizzata per integrare i requisiti dei grandi gruppi e delle scolaresche:
 Segmenti Target
 	Relazioni Clienti
@@ -97,4 +97,4 @@ Rete di Guide Native: Professionisti freelance abilitati a Praga.
 
 
 Rete Affiliati: Hotel e Travel Blogger locali tracciati con ID di affiliazione unici.
-	Questo master document unifica la profonda impalcatura teorica dei quattro volumi con i requisiti esecutivi necessari allo sviluppo software. Rappresenta la bussola operativa per la messa in produzione della piattaforma di Buongiorno Praga.
+	Questo master document unifica la profonda impalcatura teorica dei quattro volumi con i requisiti esecutivi necessari allo sviluppo software. Rappresenta la bussola operativa per la messa in produzione della piattaforma di FreeTourPraga.

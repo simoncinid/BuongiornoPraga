@@ -1,6 +1,3 @@
-import { NextResponse } from "next/server";
-import { bookings } from "@/lib/booking-store";
-
-export async function GET() {
-  return NextResponse.json({ bookings });
-}
+import {NextResponse} from "next/server";
+const gone=()=>NextResponse.json({error:"Endpoint sostituito: usare /api/platform"},{status:410});
+export {gone as GET,gone as POST};

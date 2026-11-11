@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 
-const secret = process.env.PRETOUR_TOKEN_SECRET || "local-development-secret";
+const secret = process.env.PRETOUR_TOKEN_SECRET || process.env.SESSION_SECRET || crypto.randomBytes(48).toString("hex");
 
 export function createSelfServiceToken(pnr: string, expiresAt: Date) {
   const payload = `${pnr}.${expiresAt.getTime()}`;

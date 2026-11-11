@@ -3,7 +3,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "output" / "pdf" / "Analisi_UIUX_Buongiorno_Praga_fine.docx"
+SOURCE = ROOT / "output" / "pdf" / "Analisi_UIUX_FreeTourPraga_fine.docx"
 TEMP = SOURCE.with_suffix(".updated.docx")
 
 REPLACEMENTS = {

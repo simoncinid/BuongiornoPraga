@@ -1,9 +1,13 @@
 export const site = {
-  name: "Buongiorno Praga",
+  name: "FreeTourPraga",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "420000000000",
-  email: "prenotazioni@buongiornopraga.com",
-  address: "Kaprova 42/14, 11000 Praha - Staré Město",
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER && process.env.NEXT_PUBLIC_WHATSAPP_NUMBER !== "420000000000"
+    ? process.env.NEXT_PUBLIC_WHATSAPP_NUMBER
+    : "393312744277",
+  phone: "+39 331 274 4277",
+  email: "prenotazione@unitedworldtours.eu",
+  address: "Teatro degli Stati, Rytířská 22, 110 00 Staré Město, Praga",
+  supportHours: "Tutti i giorni, dalle 9:00 alle 19:00",
   city: "Praga",
   region: "Praha",
   country: "CZ",
@@ -11,7 +15,7 @@ export const site = {
   longitude: 14.4208,
   tagline: "Goditi Praga con gli occhi, non con lo schermo del telefono. Al resto pensiamo noi.",
   description:
-    "Tour guidati in italiano a Praga con gruppi ristretti, prenotazione rapida e assistenza WhatsApp H24.",
+    "Tour guidati in italiano a Praga, prenotazione semplice e assistenza tutti i giorni dalle 9:00 alle 19:00.",
   keywords: [
     "tour guidati Praga italiano",
     "guida italiana Praga",
@@ -32,7 +36,7 @@ export const socialLinks = [
 ].filter((link) => Boolean(link.url));
 
 export const tripAdvisor = {
-  profileUrl: process.env.NEXT_PUBLIC_TRIPADVISOR_URL || "",
+  profileUrl: process.env.NEXT_PUBLIC_TRIPADVISOR_URL || "https://www.tripadvisor.it/Attraction_Review-g274707-d7365510-Reviews-Free_Tour_Praga-Prague_Bohemia.html",
   widgetHtml: process.env.TRIPADVISOR_WIDGET_HTML || "",
   widgetScriptSrc: process.env.NEXT_PUBLIC_TRIPADVISOR_WIDGET_SCRIPT_SRC || ""
 };
