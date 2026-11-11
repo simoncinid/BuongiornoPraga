@@ -117,6 +117,8 @@ export async function readState(): Promise<PlatformState> {
       throw new Error("Archivio locale vietato in produzione");
     return readLocal();
   }
+  // Anteprima Vercel senza Postgres: pagine pubbliche con seed, nessuna scrittura.
+  if (!process.env.DATABASE_URL) return initialState();
   const row = await database().platformState.findUnique({
     where: { id: "main" },
   });
