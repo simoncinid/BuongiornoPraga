@@ -11,10 +11,15 @@ const runtime = globalThis as unknown as {
 export function database() {
   return (runtime.platformPrisma ??= new PrismaClient());
 }
+export function hasProductionDatabase() {
+  const url = process.env.DATABASE_URL || "";
+  // Evita che un .env locale (localhost) finisca su Vercel e rompa la produzione.
+  return Boolean(url) && !/localhost|127\.0\.0\.1/i.test(url);
+}
 export function localMode() {
   return (
     process.env.PLATFORM_STORAGE === "local" ||
-    (!process.env.DATABASE_URL && process.env.NODE_ENV !== "production")
+    (!hasProductionDatabase() && process.env.NODE_ENV !== "production")
   );
 }
 export function initialState(): PlatformState {
@@ -84,7 +89,7 @@ export async function transaction<T>(
     runtime.platformQueue = pending.catch(() => {});
     return pending;
   }
-  if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL richiesta");
+  if (!hasProductionDatabase()) throw new Error("DATABASE_URL richiesta");
   const db = database();
   await db.platformState.upsert({
     where: { id: "main" },
@@ -117,8 +122,8 @@ export async function readState(): Promise<PlatformState> {
       throw new Error("Archivio locale vietato in produzione");
     return readLocal();
   }
-  // Anteprima Vercel senza Postgres: pagine pubbliche con seed, nessuna scrittura.
-  if (!process.env.DATABASE_URL) return initialState();
+  // Anteprima Vercel senza Postgres reale: pagine pubbliche con seed, nessuna scrittura.
+  if (!hasProductionDatabase()) return initialState();
   const row = await database().platformState.findUnique({
     where: { id: "main" },
   });

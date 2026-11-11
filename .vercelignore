@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+.vercel
+.data
+node_modules
+.tmp
+tmp
+output
+screenshots
+.next
+.next-*
+*.pdf
+*.docx*
