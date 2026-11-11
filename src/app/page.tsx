@@ -24,10 +24,10 @@ export default async function HomePage() {
           fill
           priority
           sizes="100vw"
-          className="-z-20 object-cover"
+          className="object-cover"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#071a35]/95 via-[#071a35]/75 to-[#071a35]/25" />
-        <div className="container-page grid min-h-[570px] items-center py-20">
+        <div className="hero-overlay" aria-hidden />
+        <div className="container-page relative z-10 grid min-h-[570px] items-center py-20">
           <div className="max-w-2xl">
             <p className="uppercase-tag mb-5 text-primary">
               {page?.subtitle || h.heroEyebrow}

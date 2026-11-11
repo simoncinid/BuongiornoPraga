@@ -18,7 +18,8 @@ const nextConfig = {
     ],
   },
   distDir: buildDir,
-  output: "standalone",
+  // Standalone per Docker/Render; su Vercel usa l'output Next nativo.
+  ...(process.env.VERCEL ? {} : { output: "standalone" }),
   devIndicators: false,
   poweredByHeader: false,
   images: {

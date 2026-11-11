@@ -5,14 +5,25 @@
 :root {
   --font-sans: "Manrope Variable", Arial, sans-serif;
   --font-display: "Fraunces Variable", Georgia, serif;
-  /* Arancione acceso (RGB per Tailwind opacity: border-primary/50, ecc.) */
-  --primary: 255 72 0;
-  --primary-active: 224 61 0;
-  --primary-disabled: 255 112 64;
-  --primary-soft: #ffe0d6;
-  --primary-soft-strong: #ffb896;
-  --primary-muted: #b83800;
+  /* Arancio-rosso acceso, appena sotto il neon */
+  --primary: 255 72 18;
+  --primary-active: 232 58 10;
+  --primary-disabled: 255 160 125;
+  --primary-soft: #ffe4d8;
+  --primary-soft-strong: #ffa888;
+  --primary-muted: #cc3c10;
   --on-primary: #000000;
+  /*
+   * Alternativa giallo acceso (swap futuro dei token primary):
+   * --primary: 255 196 0;
+   * --primary-active: 230 170 0;
+   * --primary-disabled: 255 214 77;
+   * --primary-soft: #fff3cc;
+   * --primary-soft-strong: #ffe080;
+   * --primary-muted: #b88600;
+   * --on-primary: #000000;
+   * --warning: 230 170 0;
+   */
   --navy: #071a35;
   --navy-soft: #102747;
   --vltava-blue: #526c89;
@@ -26,7 +37,7 @@
   --surface-soft: #f3f0e9;
   --surface-card: #ffffff;
   --success: #15803d;
-  --warning: 224 61 0;
+  --warning: 255 72 18;
   --whatsapp: #25d366;
   --header-height: 74px;
 }
@@ -266,10 +277,26 @@ footer.border-primary {
   color: var(--muted);
 }
 
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* Sinistra più scura; a destra overlay quasi assente */
+  background: linear-gradient(
+    90deg,
+    rgba(4, 28, 54, 0.92) 0%,
+    rgba(4, 28, 54, 0.88) 28%,
+    rgba(8, 42, 78, 0.58) 55%,
+    rgba(12, 58, 102, 0.06) 82%,
+    rgba(12, 58, 102, 0) 100%
+  );
+}
+
 .hero-image {
   min-height: 520px;
   background-image:
-    linear-gradient(90deg, rgba(5, 17, 36, 0.93), rgba(7, 26, 53, 0.68), rgba(7, 26, 53, 0.24)),
+    linear-gradient(90deg, rgba(7, 26, 53, 0.78), rgba(7, 26, 53, 0.52), rgba(7, 26, 53, 0.28)),
     url("https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=1800&q=80");
   background-position: center;
   background-size: cover;
@@ -419,7 +446,7 @@ body:has(.admin-shell) > header, body:has(.admin-shell) > footer, body:has(.admi
 @media(max-width:1000px) { .admin-shell { grid-template-columns:200px minmax(0,1fr); } .admin-content { padding:24px; } .admin-kpis { grid-template-columns:1fr 1fr; } .admin-grid { grid-template-columns:1fr; } }
 @media(max-width:700px) { .admin-shell { grid-template-columns:1fr; } .admin-sidebar { position:static; height:auto; } .admin-nav { grid-template-columns:1fr 1fr; } .admin-top { padding:16px; } .admin-heading { align-items:flex-start; flex-direction:column; } .form-grid { grid-template-columns:1fr; } .calendar-grid { overflow:auto; } .calendar-cell { min-width:90px; } }
 
-/* Tailwind a volte mantiene il vecchio primary dorato (#D6AD57): forza l'arancione ovunque */
+/* Forza il primary arancione ovunque (evita cache Tailwind su colori precedenti) */
 .text-primary,
 .\!text-primary,
 .text-star-rating {

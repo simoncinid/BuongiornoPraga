@@ -42,7 +42,9 @@
     ".next-qa/types/**/*.ts",
     ".next-qa/dev/types/**/*.ts",
     ".next-http/types/**/*.ts",
-    ".next-http/dev/types/**/*.ts"
+    ".next-http/dev/types/**/*.ts",
+    ".next-platform-blu/types/**/*.ts",
+    ".next-platform-blu/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
